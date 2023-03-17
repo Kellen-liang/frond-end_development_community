@@ -1,0 +1,41 @@
+.userCardContainer {
+  width: 100%;
+  height: 80px;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff; 
+  &:hover {
+    background: rgb(242, 242, 242);
+    cursor: pointer;
+  }
+  
+  .userIcon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .userInfo {
+    width: calc(100% - 60px);
+    pointer-events: none;
+    .userName {
+      margin-bottom: 5px;
+      pointer-events: none;
+    }
+    .userMessage {
+      width: 100%;
+      font-size: 14px;
+      color: #959595;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      pointer-events: none;
+    }
+  }
+}
+
+.userCardActive {
+  background: rgb(242, 242, 242);
+}

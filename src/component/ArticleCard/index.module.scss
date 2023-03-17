@@ -1,0 +1,113 @@
+$font-color: rgb(134, 144, 168);
+$font-hover-color: rgb(209, 51, 42);
+
+.articleItem {
+  position: relative;
+  width: 95%; 
+  height: 200px;
+  margin-bottom: 15px;
+  display: flex;
+  box-sizing:border-box;
+  padding: 10px 20px;
+  background-color: #fff;
+  box-shadow: 2px 2px #ddd;
+  &:hover::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-110%, -50%);
+    display: block;
+    content: '';
+    background: url(/src/assets/svg/手指示.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+  }
+  &:hover {
+    cursor: pointer;
+    box-shadow: 2px 4px 6px #00000082;
+  }
+  
+  .articleItemLeft {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    width: calc(100% - 200px );
+    .articleInfo {
+      height: 50px;
+      display: flex;
+      align-items: center;
+      li {
+        padding: 0 10px;
+        border-right: 1px solid rgb(209, 209, 209);
+        &:first-child ,
+        &:last-child {
+          border-right: none
+        }
+        &:first-child {
+          text-align: left;
+          padding-left: 0px;
+        }
+        .articleTag {
+          background: #e7dbc652;
+          padding: 0 5px;
+          margin-right: 5px;
+          box-shadow: 2px 2px 1px 0px;
+        }
+      }
+      .userIcon {
+        box-sizing: border-box;
+        width: 50px;
+        height: 50px;
+        display: block;
+        text-align: center;
+        border: 1px solid #80808085;
+        border-radius: 50%;
+        box-shadow: 0 0 10px 0 inset;
+      }
+    }
+    h2 {
+      height: 30px;
+      line-height: 30px;
+    }
+    p {
+      padding-right: 10px;
+      width: 100%;
+      height: 20px;
+      overflow: hidden;
+      color: $font-color;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .userOperate {
+      height: 20px;
+      display: flex;
+      li {
+        display: flex;
+        align-items: center;
+        margin-right: 20px;
+        img {
+          pointer-events: none;
+          width: 20px;
+          vertical-align: top;
+          margin-right: 5px;
+        }
+        span {
+          pointer-events: none;
+        }
+      }
+    }
+  }
+  .articleItemRight {
+    width: 200px;
+    height: 130px;
+    img {
+      box-shadow: 11px 9px 2px 0px #a7a6a6a8;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  
+}

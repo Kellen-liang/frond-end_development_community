@@ -1,0 +1,101 @@
+a{
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+  &:hover {
+    color: rgb(235, 39, 30);
+  }
+}
+
+.headerContainer {
+  width: 100%;
+  height: 80px;
+  padding: 0 50px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  .headerNav {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    .navLeftBar {
+      text-align: center;
+      line-height: 45px;
+      width: 20%;
+      height: 45px;
+      background-color: aliceblue;
+    }
+    .navRightBar {
+      display: flex;
+      width: 50%;
+      height: 45px;
+      li {
+        height: 100%;
+        line-height: 45px;
+        text-align: center;
+        // background-color: aliceblue;
+        &:first-child {
+          width: 30%;
+        }
+        &:nth-child(2),
+        &:nth-child(3) {
+          width: 15%;
+        }
+        &:nth-child(4) {
+          width: 25%;
+        }
+        &:last-child {
+          align-self: center;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 15%;
+          height: 80px;
+          img {
+            width: 75px;;
+            height: 75px;
+            display: block;
+            text-align: center;
+            border: 2px solid #80808085;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 0 inset;
+          }
+        }
+      }
+      .search {
+        display: flex;
+        align-items: center;
+        background-color: rgb(233, 233, 233);
+        &:focus-within {
+          box-shadow: inset 0 0 4px 0;
+          border: 2px solid black;
+        }
+        input {
+          width: 85%;
+          height: 70%;
+          padding-left: 20px;
+          background: none;
+          outline: none;
+          border: none;
+        }
+        .searchBtn {
+          display: block;
+          width: 15%;
+          height: 70%;
+          background-image: url('/src/assets/img/search-icon.png');
+          background-size: 50%;
+          background-repeat: no-repeat;
+          background-position: center;
+          cursor: pointer;
+        }
+        
+      }
+    }
+  }  
+}
+
+//去除Link组件的默认样式
+.router-link-active {
+  text-decoration: none;//去除默认样式
+  color: orange;//高亮的颜色
+}

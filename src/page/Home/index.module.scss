@@ -1,0 +1,19 @@
+.main {
+  width: 100%;
+  .mianHeader {
+    width: 100%;
+    height: 150px;
+    background-image: url('/src/assets/img/kv-pc-220122.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: bottom;
+    }
+    .mianContent {
+      width: 80%;
+      display: flex;
+      margin: 0 auto;
+      .mainAside {
+        width: 20%;
+      }
+    }
+}
