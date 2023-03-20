@@ -1,5 +1,6 @@
 import { Navigate } from "react-router-dom";
 
+import Login from "../page/Login";
 import Home from '../page/Home';
 import Message from '../page/Message';
 import User from '../page/Message/User';
@@ -10,6 +11,14 @@ import CreactionCenter from '../page/CreactionCenter';
 import Article from '../page/Article'
 
 const routes = [
+  {
+    path: '/login',
+    element: <Login/>
+  },
+  {
+    path: '/register',
+    element: <Login/>
+  },
   {
     path: '/home',
     element: <Home />,
