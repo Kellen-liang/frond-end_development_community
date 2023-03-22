@@ -12,6 +12,7 @@ function Login() {
     // do something with the data, such as sending it to an API
   };
 
+
   // get the errors object from form state
   const { errors } = formState;
 
@@ -31,7 +32,6 @@ function Login() {
               }
             })}
           />
-          <div className={styles.popover} style={{display: errors.username ? 'block' : 'none'}}>{errors.username?.message}</div>
         </div>
         <div className={`${styles.formDefault} `}>
           <label htmlFor="password">Password</label>
@@ -46,10 +46,12 @@ function Login() {
               },
             })}
           />
-          <div className={styles.popover} style={{display: errors.password ? 'block' : 'none'}}>{errors.password?.message}</div>
+          {/* <div className={styles.popover} style={{display: errors.password ? 'block' : 'none', top: 100}}>{errors.password?.message}</div> */}
         </div>
         <button className={styles.formSubmit} type="submit">Login</button>
+        <div className={styles.popover} style={{display: (errors.username || errors.password) ? 'block' : 'none'}}>{errors.username?.message }<br/>{errors.password?.message || null}</div>
       </form>
+      
     </div>
   );
 }

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Empty } from 'antd'
 import styles from "./index.module.scss"
 import UserCardList from "./UserCardList";
+import ChatPopover from "./ChatPopover";
 
 function Inbox(props) {
 
@@ -56,10 +57,11 @@ function Inbox(props) {
         </div>
       </section>
       <section className={styles.inboxRight}>
-        <div className={`${styles.InboxChatContent} customScorllType`}>
-          <Empty className='empty' description={'人影都没一个'} image={'/src/assets/img/喵喵.jpg'} imageStyle={{width:200, height:240}}/>
+        <div className={`${styles.inboxChatContent} customScorllType`}>
+          {/* <Empty className='empty' description={'人影都没一个'} image={'/src/assets/img/喵喵.jpg'} imageStyle={{width:200, height:240}}/> */}
+          <ChatPopover></ChatPopover>
         </div>
-        <textarea placeholder="输入消息，按Shift + Enter 发送" className={`${styles.InboxChatInput} customScorllType`}></textarea>
+        <textarea placeholder="输入消息，按Shift + Enter 发送" className={`${styles.inboxChatInput} customScorllType`}></textarea>
       </section>
     </div>
   )

@@ -60,8 +60,9 @@
     width: 70%;
     height: 100%;
 
-    .InboxChatContent {
+    .inboxChatContent {
       position: relative;
+      padding: 25px;
       width: 100%;
       height: 75%;
       background-color: rgb(211 209 209 / 13%);
@@ -71,7 +72,7 @@
 
       
     }
-    .InboxChatInput {
+    .inboxChatInput {
       width: 100%;
       height: 25%;
       padding: 15px;
