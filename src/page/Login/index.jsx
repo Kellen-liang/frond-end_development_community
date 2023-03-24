@@ -25,7 +25,7 @@ function Login() {
             id="username"
             type="text"
             {...register("username", {
-              required: "Email is required",
+              required: "Username is required",
               minLength: {
                 value: 5,
                 message: '最少三个字符'

@@ -1,61 +1,51 @@
-import { Navigate } from "react-router-dom";
-
-import Login from "../page/Login";
-import Home from '../page/Home';
-import Message from '../page/Message';
-import User from '../page/Message/User';
-import Dynamic from '../page/Message/Dynamic'
-import Collections from '../page/Message/Collections';
-import Inbox from '../page/Inbox'
-import CreactionCenter from '../page/CreactionCenter';
-import Article from '../page/Article'
+import { lazy } from "react";
 
 const routes = [
   {
     path: '/login',
-    element: <Login/>
+    element: lazy(() => import('@/page/Login')) 
   },
   {
     path: '/register',
-    element: <Login/>
+    element: lazy(() => import('../page/Login')) 
   },
   {
     path: '/home',
-    element: <Home />,
+    element: lazy(() => import('../page/Home')),
   },
   {
     path: '/inbox',
-    element: <Inbox />,
+    element: lazy(() => import('../page/Inbox')),
   },
   {
     path: '/message',
-    element: <Message />,
+    element: lazy(() => import('../page/Inbox')),
     children: [
       {
         path: 'user',
-        element: <User />,
+        element: lazy(() => import('../page/Message/User')),
       },
       {
         path: 'dynamic',
-        element: <Dynamic />,
+        element: lazy(() => import('../page/Message/Dynamic')),
       },
       {
         path: 'collections',
-        element: <Collections />,
+        element: lazy(() => import('../page/Message/Collections')),
       },
     ]
   },
   {
     path: '/creactionCenter',
-    element: <CreactionCenter />
+    element: lazy(() => import('../page/CreactionCenter'))
   },
   {
     path: '/article',
-    element: <Article />
+    element: lazy(() => import('../page/Article'))
   },
   {
     path: '/',
-    element: <Navigate to='/home' />
+    element: lazy(() => import('../page/Home'))
   }
 ]
 

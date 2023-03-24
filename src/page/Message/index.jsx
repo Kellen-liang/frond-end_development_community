@@ -1,11 +1,13 @@
 import React from "react";
+import styles from './index.module.scss'
+import { Menu } from 'antd';
 
-const Index = (props) => {
+function Message(props) {
   return (
-    <header>
-      Home
-    </header>
+    <div className={styles.messageContainer}>
+      <Menu></Menu>
+    </div>
   )
 }
 
-export default Index;
+export default Message;

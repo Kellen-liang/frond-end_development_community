@@ -8,7 +8,7 @@
   overflow: auto;
 }
 
-
+/* 前往不同路径的tag的样式 */
 .push {
   font-weight: normal;
   color: rgb(134, 144, 168);
@@ -37,6 +37,7 @@
   background: #f0f2f5;
 }
 
+/* 定位居中 */
 .empty {
   position: absolute;
   top: 50%;
