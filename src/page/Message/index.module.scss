@@ -1,6 +1,19 @@
 .messageContainer {
+  display: flex;
+  justify-content: space-between;
   height: calc(100vh - 120px);
-  width: 80%;
+  width: 60%;
   margin: 20px auto;
-  background: #eb7a7a;
+  
+
+  .messageLeft {
+    width: 20%;
+    height: 100%;
+  }
+
+  .messageRight {
+    width: calc(100% - 20% - 20px);
+    height: 100%;
+    background: #fff;
+  }
 }

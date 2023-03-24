@@ -1,23 +1,25 @@
 import { useState, Suspense } from 'react'
-import { Routes, Route, useRoutes, useLocation } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import routes from './router'
 import HeaderNav from './component/HeaderNav'
+import 'antd/dist/antd';
 import './App.css'
 
+
 function App() {
-  const element = useRoutes(routes)
-  const location = useLocation()
-  console.log('location',location);
+  // console.log('routes',routes);
   return (
     <div className="App">
-      { location.pathname !== '/login' && location.pathname !== '/register' && <HeaderNav/>}
-      {/* <Routes>
+
+      {location.pathname !== '/login' && location.pathname !== '/register' && <HeaderNav />}
+      <Routes>
         {
-          element.map((item, key) => (
-            <Route 
+          routes.map((item, key) => (
+            <Route
               key={key}
               path={item.path}
               element={
+                //预加载显示
                 <Suspense
                   fallback={
                     <div>正在加载中...</div>
@@ -26,13 +28,11 @@ function App() {
                   <item.element />
                 </Suspense>
               }
-                
+
             />
           ))
         }
-      </Routes> */}
-     
-      {/* {element} */}
+      </Routes>
     </div>
   )
 }

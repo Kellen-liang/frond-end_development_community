@@ -45,3 +45,8 @@
   transform: translate(-50%,-50%);
 }
 
+/* 卡片通用样式 */
+.commonCard {
+  background: #fff;
+  box-shadow: 2px 2px #ddd;
+}

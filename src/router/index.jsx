@@ -7,45 +7,31 @@ const routes = [
   },
   {
     path: '/register',
-    element: lazy(() => import('../page/Login')) 
+    element: lazy(() => import('@/page/Login')) 
   },
   {
     path: '/home',
-    element: lazy(() => import('../page/Home')),
+    element: lazy(() => import('@/page/Home')),
   },
   {
     path: '/inbox',
-    element: lazy(() => import('../page/Inbox')),
+    element: lazy(() => import('@/page/Inbox')),
   },
   {
     path: '/message',
-    element: lazy(() => import('../page/Inbox')),
-    children: [
-      {
-        path: 'user',
-        element: lazy(() => import('../page/Message/User')),
-      },
-      {
-        path: 'dynamic',
-        element: lazy(() => import('../page/Message/Dynamic')),
-      },
-      {
-        path: 'collections',
-        element: lazy(() => import('../page/Message/Collections')),
-      },
-    ]
+    element: lazy(() => import('@/page/Message')),
   },
   {
     path: '/creactionCenter',
-    element: lazy(() => import('../page/CreactionCenter'))
+    element: lazy(() => import('@/page/CreactionCenter'))
   },
   {
     path: '/article',
-    element: lazy(() => import('../page/Article'))
+    element: lazy(() => import('@/page/Article'))
   },
   {
     path: '/',
-    element: lazy(() => import('../page/Home'))
+    element: lazy(() => import('@/page/Home'))
   }
 ]
 

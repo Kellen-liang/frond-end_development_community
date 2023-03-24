@@ -1,6 +1,6 @@
 import React from "react";
 
-const Index = (props) => {
+function User(props) {
   return (
     <header>
       User
@@ -8,4 +8,4 @@ const Index = (props) => {
   )
 }
 
-export default Index;
+export default User;
