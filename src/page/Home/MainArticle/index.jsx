@@ -28,7 +28,7 @@ function MainArticle({ width, style, onClick}) {
       'is-comment': false,
     },
     {
-      'id': '001',
+      'id': '002',
       'author': 'Kellen',
       'user-icon': '/src/assets/img/Icon.png',
       'title': '如何优雅地写出一个组件',
@@ -45,7 +45,7 @@ function MainArticle({ width, style, onClick}) {
       'is-comment': false,
     },
     {
-      'id': '001',
+      'id': '003',
       'author': 'Kellen',
       'user-icon': '/src/assets/img/Icon.png',
       'title': '如何优雅地写出一个组件',

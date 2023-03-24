@@ -29,11 +29,13 @@
       input {
         padding: 0 10px;
         width: calc(100% - 150px);
+        border: 2px solid blue;
         outline: none;
         border: none;
         background: none;
         border-bottom: 3px solid #00000042;
       }
+       
     }
     .formSubmit {
       display: block;
