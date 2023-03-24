@@ -45,7 +45,7 @@ function Inbox(props) {
     console.log('record',record);
   }
   return (
-    <div className={styles.inboxContainer}>
+    <div className={`${styles.inboxContainer} commonCard`}>
       <section className={styles.inboxLeft}>
         <div className={styles.inboxLeftTop}>
           <div className={styles.inboxSearch}>
