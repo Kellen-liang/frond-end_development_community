@@ -1,0 +1,59 @@
+.chatPopoverContainer {
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    width: 100%;
+    padding: 20px 0 10px 0;
+    color: #959595;
+    font-size: 14px;
+    text-align: center;
+  }
+
+  .content {
+    width: 70%;
+    display: flex;
+    .userIcon {
+      width: 50px;
+      height: 50px;
+      overflow: hidden;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  
+    .chatContent {
+      flex: 1;
+      margin-left: 10px;
+      padding: 10px 20px;
+      border-radius: 3px;
+      background-color: #fff;
+      white-space: pre-wrap;
+      border-radius: 18px;
+      border-top-left-radius: 0;
+      &:hover {
+        background: rgb(235, 235, 235);
+      }
+    }
+  }
+
+  // 自己的就是右侧显示，内容与头像相反
+  .isMineContent {
+    align-self: end;
+    flex-direction: row-reverse;
+    .isMineChatContent {
+      border-top-right-radius: 0;
+      border-top-left-radius: 18px;
+      margin-left: 0px;
+      margin-right: 10px;
+      color: #fff;
+      background: rgb(165, 186, 207);
+;
+      &:hover {
+        background: rgb(128, 185, 242);
+      }
+    }
+  }
+  
+}

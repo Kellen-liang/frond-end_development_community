@@ -1,12 +1,12 @@
 import React from "react";
 // import styles from "./index.module.scss"
 
-const Index = (props) => {
+const Comment = (props) => {
   return (
     <header>
-      Dynamic
+      Comment
     </header>
   )
 }
 
-export default Index;
+export default Comment;

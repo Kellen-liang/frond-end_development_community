@@ -28,7 +28,7 @@ function MainArticle({ width, style, onClick}) {
       'is-comment': false,
     },
     {
-      'id': '001',
+      'id': '002',
       'author': 'Kellen',
       'user-icon': '/src/assets/img/Icon.png',
       'title': '如何优雅地写出一个组件',
@@ -45,7 +45,7 @@ function MainArticle({ width, style, onClick}) {
       'is-comment': false,
     },
     {
-      'id': '001',
+      'id': '003',
       'author': 'Kellen',
       'user-icon': '/src/assets/img/Icon.png',
       'title': '如何优雅地写出一个组件',
@@ -69,7 +69,7 @@ function MainArticle({ width, style, onClick}) {
    * @param {'comments'|'likes'} type -操作类型
    * @param {number} value  -值
    * @param {number} index  -下标
-   * @param {object} record -整条数据
+   * @param {object} record -当前整条数据
    */
   const onOperateClick = (type, value, index, record) => {
     if (type === 'likes') {
@@ -91,8 +91,10 @@ function MainArticle({ width, style, onClick}) {
    * @desc ArticleCard组件的默认onClick事件会返回点击对象的的value值
    * @param {string} value  - 值
    * @param {object} record - 整条数据
+   * @param {'userIcon'|'user'|'tag'|'other'} type - 触发事件的类型：userIcon | user | tag | other
    */
-  const onArticleClick = (value, record) => {
+  const onArticleClick = (value, record, type) => {
+    console.log('type---',type);
     console.log('value---',value);
     if (value.length) {
       
