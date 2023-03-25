@@ -56,7 +56,6 @@ function Inbox(props) {
     console.log(record);
   }
   const handleKeyDown = (e) => {
-    if(e.target.value = '') return
 
     //触发Shift + Enter事件
     if (e.shiftKey && e.keyCode === 13) {
