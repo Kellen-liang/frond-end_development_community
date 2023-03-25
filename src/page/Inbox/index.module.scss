@@ -4,6 +4,7 @@
   margin: 20px auto;
   background: #fff;
   border-radius: 15px;
+  box-shadow:  9px 9px #8080805c;
   overflow: hidden;
   display: flex;
   .inboxLeft {
@@ -68,7 +69,7 @@
       word-break: break-word;
       word-wrap: break-word;
       overflow-y: auto;
-
+      
       
     }
     .inboxChatInput {

@@ -39,7 +39,7 @@ function UserCard({ userId, userIcon, userName, userMessage, isActive, onClick }
 function UserCardList({data, onClick}) {
   const [activeCard, setActiveCard] = useState('')
   const clickFlag = useRef('')
-  const _onClick = (e) => {
+  const _onClick = (e, record) => {
     //阻值冒泡
     e.stopPropagation();
     //阻止原始事件冒泡
@@ -49,7 +49,7 @@ function UserCardList({data, onClick}) {
     if (index === clickFlag.current) {
       return
     }
-    onClick(index, data)
+    onClick(index, record)
     clickFlag.current = index
   }
 
@@ -65,7 +65,7 @@ function UserCardList({data, onClick}) {
           isActive={activeCard === index}
           onClick={(e) => {
             setActiveCard(index)
-            return _onClick(e)
+            return _onClick(e, item)
           }}
         />
       ))}

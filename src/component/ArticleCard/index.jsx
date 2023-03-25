@@ -90,7 +90,7 @@ function ArticleCard(props) {
       value = e.target.innerText
     }
     
-    props.onClick(value , record)
+    props.onClick(value , record, type)
   }
   return (
     <li className={styles.articleItem} onClick={(e) => _onClick(e)}>
@@ -117,7 +117,6 @@ function ArticleCard(props) {
         >
           <li><img src={`/src/assets/img/未查看.png`} alt="" /><span>{operate.count}</span></li>
           <li data-type='likes' ><img src={`/src/assets/img/${operate.isLike ? '已点赞' : '未点赞'}.png`} alt="" /><span>{operate.likes}</span></li>
-          {/* <li data-index={index + 'comment'} onClick={(e) => onOperateClickL(e)}><img src={`/src/assets/img/${operate.isComment ? '已评论' : '未评论'}.png`} alt="" /><span>{operate.comments}</span></li> */}
           <li data-type='comments' ><img src={`/src/assets/img/${operate.isComment ? '已评论' : '未评论'}.png`} alt="" /><span>{operate.comments}</span></li>
         </ul>
       </section>
