@@ -3,7 +3,9 @@ import styles from "./index.module.scss";
 
 /**
  * 
- * @param {object} props 
+ * @param {object} props
+ * @param {CSSProperties} props.style -自定义样式
+ * @param {number} props.width -卡片宽度 
  * @param {number|string} props.index -唯一标识
  * @param {object} props.record -Item
  * @param {string} props.cover -封面
@@ -93,7 +95,7 @@ function ArticleCard(props) {
     props.onClick(value , record, type)
   }
   return (
-    <li className={styles.articleItem} onClick={(e) => _onClick(e)}>
+    <li className={styles.articleItem} onClick={(e) => _onClick(e)} style={{width: props.width , ...props.style}}>
       <section className={styles.articleItemLeft}>
         <ul className={styles.articleInfo}>
           <li><img data-type='userIcon' data-user-name={header?.userName} className={styles.userIcon} src={header?.userIcon} alt="" /></li>

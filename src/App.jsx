@@ -2,6 +2,7 @@ import { useState, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import routes from './router'
 import HeaderNav from './component/HeaderNav'
+import Loading from './component/Loading'
 import 'antd/dist/antd';
 import './App.css'
 
@@ -22,7 +23,7 @@ function App() {
                 //预加载显示
                 <Suspense
                   fallback={
-                    <div>正在加载中...</div>
+                    <Loading style={{height: 'calc(100vh - 100px)', paddingTop: 200}}/>
                   }
                 >
                   <item.element />

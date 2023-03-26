@@ -30,6 +30,10 @@ const routes = [
     element: lazy(() => import('@/page/Article'))
   },
   {
+    path: '/userCenter',
+    element: lazy(() => import('@/page/UserCenter'))
+  },
+  {
     path: '/',
     element: lazy(() => import('@/page/Home'))
   }
