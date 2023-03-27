@@ -12,8 +12,7 @@ h1 {
   flex-wrap: wrap;
   width: 100%;
   min-height: 125px;
-  // background-color:antiquewhite;
-  border-bottom: 3px solid rgb(219, 219, 219);
+  border-bottom: 2px solid rgb(219, 219, 219);
   padding: 20px 10px;
   &:hover {
     cursor: pointer;
@@ -91,7 +90,6 @@ h1 {
     .replyContent {
       background-color: rgb(233, 233, 233);
       resize:none
-      
     }
 
     & > div {

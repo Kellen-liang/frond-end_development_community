@@ -4,7 +4,6 @@ import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { Menu } from 'antd'
 import ArticleCard from "@/component/ArticleCard";
 import CommentCard from "./CommentCard";
-import Comment from "@/component/Comment";
 import Loading from "@/component/Loading";
 import { Empty } from "antd";
 import {
@@ -49,7 +48,7 @@ function Message(props) {
   
   const articleShowJSX = (key) => {
     switch (key) {
-      case 'like': return
+      case 'like': return 
       case 'comment': return commentContentJSX()
       case 'collect': return collectContentJSX()
       default: return emptyContentJSX()
@@ -90,6 +89,8 @@ function Message(props) {
     ) : <Empty className={styles.empty}/>
     
   )
+
+  
 
   const commentContentJSX = () => (
     comments.length ? (
