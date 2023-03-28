@@ -1,0 +1,180 @@
+.userCenterContainer {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  min-height: calc(100vh - 120px);
+  width: 60%;
+  margin: 20px auto;
+  
+  .left {
+    width: 70%;
+    .userCard {
+      width: 100%;
+      border-radius: 5px;
+      background: #fff;
+      padding: 20px;
+      display: flex;
+      
+      .userCardLeft{
+        width: 100px;
+        img {
+          width: 100%;
+          border-radius: 50%;
+        }
+      }
+
+      .userCardCenter {
+        width: calc(100% - 100px - 20px - 200px);
+        margin-left: 20px;
+        & > div {
+          margin-bottom: 15px;
+          
+        }
+
+        .tagList {
+          margin: 10px 0;
+          .tag {
+            background: rgba(231, 219, 198, 0.3215686275);
+            padding: 0 5px;
+            margin-right: 5px;
+          }
+        }
+
+        .userInfo {
+          color: #2978bd;
+          &:hover {
+            cursor: pointer;
+            color: #2391f1;
+          }
+        }
+      }
+
+      .userCardRight {
+        display: flex;
+        justify-content: center;
+        align-items: end;
+        padding-bottom: 20px;
+        width: 200px;
+
+        .editBtn {
+          font-size: 18px;
+          padding: 8px 10px;
+          border-radius: 5px;
+          overflow: hidden;
+          color: #2978bd;
+          border: 1px solid #2978bd;
+          &:hover {
+            cursor: pointer;
+            color: #2391f1;
+            border-color: #2391f1;
+          }
+        }
+        .concernBtn {
+          font-size: 18px;
+          padding: 8px 10px;
+          border-radius: 5px;
+          background: #2978bd;
+          overflow: hidden;
+          color: #fff;
+          border: 1px solid #2978bd;
+          &:hover {
+            cursor: pointer;
+            color: #e2e8ec;
+          }
+        }
+        .inboxBtn {
+          font-size: 18px;
+          padding: 8px 10px;
+          border-radius: 5px;
+          overflow: hidden;
+          color: #2978bd;
+          border: 1px solid #2978bd;
+          &:hover {
+            cursor: pointer;
+            color: #2391f1;
+            border-color: #2391f1;
+          }
+        }
+      }
+    }
+    .contentCard {
+      width: 100%;
+      border-radius: 5px;
+      background: #fff;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+  }
+
+  .right {
+    width: calc(100% - 70% - 20px);
+    .successCard {
+      width: 100%;
+      border-radius: 5px;
+      background: #fff;
+
+      & > {
+        h2 {
+          font-size: 22px;
+          padding: 20px;
+          border-bottom: 1px solid #80808036;
+        }
+        ul {
+          font-size: 0;
+          padding: 20px;
+          li {
+            font-size: 18px;
+            img {
+              width: 35px;
+              height: 35px;
+              vertical-align: middle;
+              margin-right: 20px;
+            }
+            span {
+              vertical-align: middle;
+            }
+            &:nth-child(2) {
+              padding: 10px 0;
+            }
+          }
+        }
+      }
+    }
+    .countCard{
+      margin-top: 20px;
+      width: 100%;
+      border-radius: 5px;
+      padding: 20px;
+      background: #fff;
+      display: flex;
+      font-size: 22px;
+      & > div{
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        height: 100%;
+        
+        &:first-child::after{
+          display: block;
+          content: '';
+          position: absolute;
+          right: -1px;
+          border-left: 2px solid rgb(128 128 128 / 10%);
+          height: 55px;
+        }
+        
+        &:hover {
+          cursor: pointer;
+        }
+        .count {
+          margin-top: 10px;
+        }
+        
+      }
+      
+    }
+  }
+}

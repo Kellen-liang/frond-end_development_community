@@ -14,10 +14,9 @@ function HeaderNav(props) {
           <li><Link to={'/inbox'}>Inbox</Link></li>
           <li><Link to={'/message'}>meseege</Link></li>
           <li><Link to={'/creactionCenter'}>CreactionCenter</Link></li>
-          <li><Link to={'/message/user'}><img src="/src/assets/img/Icon.png" alt=""></img></Link></li>
+          <li><Link to={'/userCenter'}><img src="/src/assets/img/Icon.png" alt=""></img></Link></li>
         </ul>
       </nav>
-      {/* <section className={styles.headerDecoration}></section> */}
     </header>
   )
 }

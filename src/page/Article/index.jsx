@@ -9,8 +9,9 @@ function Article(props) {
 
   const list = [
     {
-      comment_id: 'comment_id-13288923',
-      article_id: 'article_id-1', //文章id
+      comment_id: 'comment_id-13288923',//评论（回复）唯一id
+      article_id: 'article_id-1', //文章id(同一篇文章id相同)
+      article_title: '如有优雅的写出一个组件', //文章标题
       user_id: 'user_id-1', //评论（回复）创建者id
       username: 'Kellen', //评论（回复）创建者名
       userIcon: '/src/assets/svg/带刀剑士.svg', //评论（回复）创建者头像
@@ -19,6 +20,7 @@ function Article(props) {
       canDel: 1, //是否可进行删除操作
       reply_comment_list: [
         {
+          comment_id: 'comment_id-13288924',//评论（回复）唯一id
           reply_id: 'reply_id-1', //回复id（没有,表示为评论）
           reply_late_id: 'user_id-1',  //回复对象id
           reply_late: 'Kellen', //回复对象名
@@ -27,9 +29,10 @@ function Article(props) {
           userIcon: '/src/assets/svg/带刀剑士.svg', //评论（回复）创建者头像
           content: '回复Kellen ', //评论、回复内容
           addTime: '2020-03-91',  //添加时间
-          canDel: 0
+          canDel: 1
         },
         {
+          comment_id: 'comment_id-13288925',//评论（回复）唯一id
           reply_id: 'reply_id-2', //回复id（没有,表示为评论）
           reply_late: 'Coco', //回复对象名
           reply_late_id: 'user_id-2',  //回复对象id
@@ -38,7 +41,7 @@ function Article(props) {
           userIcon: '/src/assets/svg/带刀剑士.svg', //评论（回复）创建者头像
           content: '这是一段评论 ', //评论、回复内容
           addTime: '2020-03-91',  //添加时间
-          canDel: 0
+          canDel: 1
         },
       ]
     },

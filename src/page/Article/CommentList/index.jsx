@@ -107,11 +107,12 @@ function CommentList(props) {
             {replyCommentList.map((item, index) => (
               <Comment
                 key={index}
-                commentId={commentId}
+                commentId={item.comment_id}
                 username={item.username}
                 userIcon={item.userIcon}
                 content={item.content}
                 addTime={item.addTime}
+                canDel={item.canDel}
                 replyLate={item.reply_late}
                 onReply={onReply}
                 onGetuserInfo={onGetuserInfo}
