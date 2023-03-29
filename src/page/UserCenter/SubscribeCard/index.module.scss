@@ -1,0 +1,70 @@
+h1 {
+  margin: 0;
+  padding: 0;
+}
+.subscribeCardContainer {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 30px;
+
+  &::after {
+    display: block;
+    content: '';
+    width: 96%;
+    border-bottom: 1px solid rgb(240, 240, 240);
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+  }
+
+  & > img,
+  .subscribeBtn {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  & > img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+    overflow: hidden;
+  }
+  & > h1 {
+    line-height: 50px;
+    font-size: 22px;
+    flex: 1;
+  }
+  .subscribeBtn {
+    width: 120px;
+    height: 45px;
+    border-radius: 3px;
+    line-height: 43px;
+    text-align: center;
+    
+
+  }
+
+  .isNotActive {
+    color: rgb(146, 196, 82);
+    background: #fff;
+    border: 1px solid rgb(146, 196, 82);
+    &:hover {
+      color: rgb(98, 194, 61);
+      border-color: rgb(98, 194, 61);
+    }
+  }
+  
+  .isActive {
+    color: #fff;
+    border-color: rgb(146, 196, 82);
+    background: rgb(146, 196, 82);
+    &:hover {
+      border-color: rgb(98, 194, 61);
+    }
+  }
+}

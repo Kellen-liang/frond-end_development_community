@@ -33,3 +33,12 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
+
+.articleCardCustomClass {
+  &:hover {
+    box-shadow: none;
+  }
+  &:hover::before {
+    display: none;
+  }
+}

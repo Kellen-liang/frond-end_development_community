@@ -99,10 +99,20 @@
     }
     .contentCard {
       width: 100%;
+      
       border-radius: 5px;
       background: #fff;
       overflow: hidden;
       margin-top: 20px;
+
+      .content {
+        position: relative;
+        width: 100%;
+        min-height: 300px;
+        border-radius: 5px;
+        background: #fff;
+        overflow: hidden;
+      }
     }
   }
 
@@ -177,4 +187,11 @@
       
     }
   }
+}
+
+.empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

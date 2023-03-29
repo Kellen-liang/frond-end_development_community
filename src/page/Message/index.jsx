@@ -2,7 +2,6 @@ import React, { Suspense, useState, useRef } from "react";
 import styles from './index.module.scss'
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { Menu } from 'antd'
-import ArticleCard from "@/component/ArticleCard";
 import CommentCard from "./CommentCard";
 import LikeCard from "./LikeCard";
 import Loading from "@/component/Loading";
@@ -16,6 +15,7 @@ import { cloneDeep } from "lodash";
 
 function Message(props) {
   const navigate = useNavigate()
+  //菜单列表
   const menu = useRef([
     {
       key: 'like',
@@ -27,14 +27,9 @@ function Message(props) {
       icon: <MessageOutlined />,
       label: '评论'
     },
-    {
-      key: 'collect',
-      icon: <StarOutlined />,
-      label: '收藏'
-    },
   ])
   const [menuKey, setMenuKey]= useState('like')
-  //评论
+  //评论数据
   const commentList = [
       { 
         comment_id: '001', //评论（回复）唯一id
@@ -59,130 +54,7 @@ function Message(props) {
       
   ]
   const [comments, setComments] = useState(commentList);
-  //收藏
-  const articleList = [
-    {
-      'id': '001',
-      'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
-      'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
-      'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
-      'tag': ['前端', 'JS'],
-      'article': '文章正文',
-      'add-time': '创建时间',
-      'update-time': '更新时间',
-      'count': 20,
-      'likes': 14,
-      'is-like': false,
-      'comments': 12,
-      'is-comment': false,
-    },
-    {
-      'id': '002',
-      'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
-      'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
-      'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
-      'tag': ['前端', 'JS'],
-      'article': '文章正文',
-      'add-time': '创建时间',
-      'update-time': '更新时间',
-      'count': 20,
-      'likes': 14,
-      'is-like': false,
-      'comments': 12,
-      'is-comment': false,
-    },
-    {
-      'id': '003',
-      'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
-      'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
-      'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
-      'tag': ['前端', 'JS'],
-      'article': '文章正文',
-      'add-time': '创建时间',
-      'update-time': '更新时间',
-      'count': 20,
-      'likes': 14,
-      'is-like': false,
-      'comments': 12,
-      'is-comment': false,
-    },
-    {
-      'id': '004',
-      'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
-      'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
-      'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
-      'tag': ['前端', 'JS'],
-      'article': '文章正文',
-      'add-time': '创建时间',
-      'update-time': '更新时间',
-      'count': 20,
-      'likes': 14,
-      'is-like': false,
-      'comments': 12,
-      'is-comment': false,
-    },
-    {
-      'id': '005',
-      'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
-      'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
-      'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
-      'tag': ['前端', 'JS'],
-      'article': '文章正文',
-      'add-time': '创建时间',
-      'update-time': '更新时间',
-      'count': 20,
-      'likes': 14,
-      'is-like': false,
-      'comments': 12,
-      'is-comment': false,
-    },
-    {
-      'id': '006',
-      'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
-      'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
-      'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
-      'tag': ['前端', 'JS'],
-      'article': '文章正文',
-      'add-time': '创建时间',
-      'update-time': '更新时间',
-      'count': 20,
-      'likes': 14,
-      'is-like': false,
-      'comments': 12,
-      'is-comment': false,
-    },
-    {
-      'id': '007',
-      'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
-      'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
-      'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
-      'tag': ['前端', 'JS'],
-      'article': '文章正文',
-      'add-time': '创建时间',
-      'update-time': '更新时间',
-      'count': 20,
-      'likes': 14,
-      'is-like': false,
-      'comments': 12,
-      'is-comment': false,
-    },
-  ]
-  const [data, setData] = useState(articleList)
-  //点赞
+  //点赞数据
   const likeList = [
     { 
       article_id: '001', 
@@ -210,15 +82,9 @@ function Message(props) {
     },
   ]
   const [likes, setLike] = useState(likeList)
-  const onClickMenu = ({ key }) => {
-    if (key === menuKey) {
-      return
-    }
-    setMenuKey(key)
-    console.log(key);
-
-  }
-
+  
+  //事件操作:  
+  //点赞和评论页操作
   /**
    * @desc 跳转值对应用户详情页（点赞/评论通用）
    * @param {string} username -用户名
@@ -249,48 +115,39 @@ function Message(props) {
   }
 
 
-  const articleShowJSX = (key) => {
+  //内容显示控制:
+  //内容显示菜单
+  const onClickMenu = ({ key }) => {
+    if (key === menuKey) {
+      return
+    }
+    setMenuKey(key)
+  }
+
+  const contentShow = (key) => {
     switch (key) {
       case 'like': return commentLikeJSX()
       case 'comment': return commentContentJSX()
-      case 'collect': return collectContentJSX()
       default: return 
     }
   }
 
-  const collectContentJSX = () => (
-    data.length ? (
-      data.map((item, index) => (
-        <ArticleCard
-          width={'100%'}
-          key={item.id}
-          index={index}
+  const commentLikeJSX = () => (
+    likes.length ? (
+      likes.map((item, index) => (
+        <LikeCard
+          key={item.article_id}
           record={item}
-          cover={item.cover}
-          header={{
-            userIcon: item['user-icon'],
-            userName: item.author,
-            addTime: item['add-time'],
-            tags: item.tag,
-          }}
-          content={{
-            title: item.title,
-            intro: item.intro,
-          }}
-          operate={{
-            count: item.count,
-            likes: item.likes,
-            isLike: item['is-like'],
-            comments: item.comments,
-            isComment: item['is-comment'],
-          }}
-  
-          onClick={onArticleClick}
-          onOperateClick={onOperateClick}
+          userIcon={item.user_icon}
+          username={item.username}
+          addTime={item.add_time}
+          sourceId={item.article_id}
+          sourceTitle={item.article_title}
+          onGetuserInfo={onGetuserInfo}
+          onSearchArticl={onSearchArticl}
         />
       ))
     ) : <Empty className={styles.empty}/>
-    
   )
 
   const commentContentJSX = () => (
@@ -313,68 +170,7 @@ function Message(props) {
       ))
     ) : <Empty className={styles.empty}/>
   )
-
-  const commentLikeJSX = () => (
-    likes.length ? (
-      likes.map((item, index) => (
-        <LikeCard
-          key={item.article_id}
-          record={item}
-          userIcon={item.user_icon}
-          username={item.username}
-          addTime={item.add_time}
-          sourceId={item.article_id}
-          sourceTitle={item.article_title}
-          onGetuserInfo={onGetuserInfo}
-          onSearchArticl={onSearchArticl}
-        />
-      ))
-    ) : <Empty className={styles.empty}/>
-  )
   
-  /**
-   * 操作：点赞，评论
-   * @param {'comments'|'likes'} type -操作类型
-   * @param {number} value  -值
-   * @param {number} index  -下标
-   * @param {object} record -当前整条数据
-   */
-  const onOperateClick = (type, value, index, record) => {
-    if (type === 'likes') {
-      const tempData = cloneDeep(data)
-      tempData.forEach((item, _index) => {
-        if (_index === index) {
-          item['is-like'] = !item['is-like']
-          item.likes = item['is-like'] ? value + 1 : value - 1
-        }
-      })
-      setData(tempData)
-    }
-    else {
-      console.log(value);
-    }
-  }
-
-  /**
-   * @desc ArticleCard组件的默认onClick事件会返回点击对象的的value值
-   * @param {string} value  - 值
-   * @param {object} record - 整条数据
-   * @param {'userIcon'|'user'|'tag'|'other'} type - 触发事件的类型：userIcon | user | tag | other
-   */
-  const onArticleClick = (value, record, type) => {
-    console.log('type---',type);
-    console.log('value---',value);
-    if (value.length) {
-      
-    } 
-    else {
-      navigate('/article')
-    }
-  }
-
- 
-
-
   return (
     <div className={styles.messageContainer}>
       <aside className={`${styles.messageLeft} commonCard`}>
@@ -387,7 +183,7 @@ function Message(props) {
       </aside>
       <article className={`${styles.messageRight}  customScorllType`}>
         <div className={`${styles.messageRightContainer} commonCard`} >
-          {articleShowJSX(menuKey)}
+          {contentShow(menuKey)}
         </div>
       </article>
     </div>

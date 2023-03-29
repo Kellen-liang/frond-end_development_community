@@ -115,6 +115,7 @@ function MainArticle({ width, style, onClick}) {
           data.map((item, index) => (
             <ArticleCard
               key={item.id}
+              isHaveHoverShadow={true}
               index={index}
               record={item}
               cover={item.cover}
