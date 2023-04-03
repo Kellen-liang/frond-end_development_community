@@ -13,9 +13,13 @@ $backgroundColor:#fff;
     border-radius: 17px;
     
     .articleContent {
-      height: 800px;
+      min-height: 800px;
       background: $backgroundColor;
-      border-bottom: 1px solid black;
+      margin: 0 auto;
+		  padding: 45px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 45px;
     }
 
     .articleComment {

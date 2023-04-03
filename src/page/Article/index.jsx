@@ -1,11 +1,24 @@
 import React from "react";
-import styles from "./index.module.scss"
+import styles from "./index.module.scss";
 import Information from "@/component/Information";
 import CommentList from "./CommentList";
+import { useState, useLayoutEffect } from "react";
+import MEDitor from '@uiw/react-md-editor';
+
+
+
 
 function Article(props) {
+  const [markdown, setMarkdown] = useState('');
+  useLayoutEffect(() => {
+    fetch('/src/assets/md/js基础知识.md')
+      .then(response => response.text())
+      .then(text => {
+        // console.log(text);
+        setMarkdown(text)
+      })
+  }, [])
 
-  
 
   const list = [
     {
@@ -47,11 +60,11 @@ function Article(props) {
     },
   ]
 
-  const onGetuserInfo = ( username ) => {
-    console.log('username',username);
+  const onGetuserInfo = (username) => {
+    console.log('username', username);
   }
 
-  const onReply = ( replyLate, replyValue ) => {
+  const onReply = (replyLate, replyValue) => {
     console.log(replyLate, replyValue);
   }
 
@@ -62,7 +75,12 @@ function Article(props) {
   return (
     <div className={styles.articleContainer}>
       <div className={styles.articleMain}>
-        <section className={styles.articleContent}></section>
+        <section className={styles.articleContent}>
+          <MEDitor.Markdown  // 文本展示
+            source={markdown}
+          />
+
+        </section>
         <section className={styles.articleComment}>
           <div className={styles.articleCommentTop}>
             <h1>评论</h1>
