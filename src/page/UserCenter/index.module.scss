@@ -26,18 +26,12 @@
       .userCardCenter {
         width: calc(100% - 100px - 20px - 200px);
         margin-left: 20px;
+        h2 {
+          margin-bottom: 15px;
+        }
         & > div {
           margin-bottom: 15px;
           
-        }
-
-        .tagList {
-          margin: 10px 0;
-          .tag {
-            background: rgba(231, 219, 198, 0.3215686275);
-            padding: 0 5px;
-            margin-right: 5px;
-          }
         }
 
         .userInfo {

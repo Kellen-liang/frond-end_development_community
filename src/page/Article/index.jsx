@@ -4,11 +4,17 @@ import Information from "@/component/Information";
 import CommentList from "./CommentList";
 import { useState, useLayoutEffect } from "react";
 import MEDitor from '@uiw/react-md-editor';
+import { Button } from 'antd'
+
 
 
 
 
 function Article(props) {
+  const [isLike, setIsLike] = useState(false)
+  const [isComment, setIsComment] = useState(false)
+  const [isCollect, setIsCollect] = useState(false)
+  const [isShow, setIsShow] = useState(true)
   const [markdown, setMarkdown] = useState('');
   useLayoutEffect(() => {
     fetch('/src/assets/md/js基础知识.md')
@@ -76,10 +82,18 @@ function Article(props) {
     <div className={styles.articleContainer}>
       <div className={styles.articleMain}>
         <section className={styles.articleContent}>
+          <div className={styles.title}>标题</div>
+          <div className={styles.userInfo}>
+            <img className={styles.userInfoLeft} src="/src/assets/svg/带刀剑士.svg" alt="" />
+            <div className={styles.userInfoRight}>
+              <span>Kellen</span>
+              <span className={styles.date}>2023-04-03 · 阅读2040</span>
+            </div>
+          </div>
+          <div className={styles.cover}><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/841d0fcd9ec14527806f5b4129e1a9b1~tplv-k3u1fbpfcp-zoom-crop-mark:1512:1512:1512:851.awebp?" alt="" /></div>
           <MEDitor.Markdown  // 文本展示
             source={markdown}
           />
-
         </section>
         <section className={styles.articleComment}>
           <div className={styles.articleCommentTop}>
@@ -109,6 +123,13 @@ function Article(props) {
           </div>
         </section>
       </div>
+      <ul className={styles.articleBar}>
+        <li onClick={() => setIsLike(!isLike)}><img src={isLike ? '/src/assets/img/已点赞.png' : '/src/assets/img/未点赞.png'} alt="" /></li>
+        <li onClick={() => setIsComment(!isComment)}><img src={isComment ? '/src/assets/img/已评论.png' : '/src/assets/img/未评论.png'} alt="" /></li>
+        <li onClick={() => setIsCollect(!isCollect)}><img src={isCollect ? '/src/assets/svg/已收藏.svg' : '/src/assets/svg/未收藏.svg'} alt="" /></li>
+        <li style={{display: isShow ? 'block' : 'none'}}><img src='/src/assets/svg/编辑.svg' alt="" /></li>
+        <li style={{display: isShow ? 'block' : 'none'}}><img src='/src/assets/svg/删除.svg' alt="" /></li>
+      </ul>
       <Information width={'25%'} />
     </div>
   )

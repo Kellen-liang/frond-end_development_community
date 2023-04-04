@@ -14,7 +14,7 @@ function App() {
   return (
     <div className="App">
 
-      {location.pathname !== '/login' && location.pathname !== '/register' && <HeaderNav />}
+      {location.pathname !== '/login' && location.pathname !== '/register' && location.pathname !== '/meditor' && <HeaderNav />}
       <Routes>
         {
           routes.map((item, key) => (

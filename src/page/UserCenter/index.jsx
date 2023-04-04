@@ -16,7 +16,6 @@ function UserCenter(props) {
   const navigate = useNavigate()
   const [menuKey, setMenuKey] = useState( state?.navKey )
   const isMime = true
-  const tagList = ['前端', 'Node']
   //文章
   const articleList = [
     {
@@ -205,9 +204,6 @@ function UserCenter(props) {
         <section className={styles.userCardLeft}><img src="/src/assets/svg/带刀剑士.svg" alt="" /></section>
         <section className={styles.userCardCenter}>
           <h2>Kellen</h2>
-          <div className={styles.tagList} >
-            {tagList?.map((item, index) => <Tag className={styles.tag} key={index}>{item}</Tag>)}
-          </div>
           <div className={styles.userInfo}>+ 添加从事的职业</div>
           <div className={styles.userInfo}>+ 添加个性签名</div>
         </section>
@@ -224,9 +220,6 @@ function UserCenter(props) {
         <section className={styles.userCardLeft}><img src="/src/assets/svg/带刀剑士.svg" alt="" /></section>
         <section className={styles.userCardCenter}>
           <h2>Kellen</h2>
-          <div className={styles.tagList} >
-            {tagList?.map((item, index) => <Tag className={styles.tag} key={index}>{item}</Tag>)}
-          </div>
           <div>+ 添加从事的职业</div>
           <div>+ 添加个性签名</div>
         </section>
