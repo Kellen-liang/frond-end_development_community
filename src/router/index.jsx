@@ -7,7 +7,7 @@ const routes = [
   },
   {
     path: '/register',
-    element: lazy(() => import('@/page/Login')) 
+    element: lazy(() => import('@/page/Register')) 
   },
   {
     path: '/home',
