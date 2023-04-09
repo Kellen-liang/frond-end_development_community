@@ -1,45 +1,9 @@
 import React from "react";
 import styles from "./index.module.scss"
+import { TAG } from "@/utils/common";
 
-const Index = ({width, style}) => {
-  const TAG = [
-    '哈',
-    '哈哈哈',
-    '1按生产工人',
-    '哈',
-    '哈哈哈',
-    '1按生产工人',
-    '哈',
-    '哈哈哈',
-    '1按生产工人',
-    '卡比兽看到那',
-    '它按市场按属地',
-    '1按生产工人',
-    '卡比兽看到那',
-    '它按市场按属地',
-    '哈哈哈',
-    '1按生产工人',
-    '哈',
-    '哈哈哈',
-    '1按生产工人',
-    '哈哈哈',
-    '1按生产工人',
-    '哈',
-    '哈哈哈',
-    '1按生产工人',
-    '哈哈哈',
-    '1按生产工人',
-    '卡比兽看到那',
-    '它按市场按属地',
-    '1按生产工人',
-    '哈哈哈',
-    '1按生产工人',
-    '哈哈哈',
-    '1按生产工人',
-    '哈',
-    '哈哈哈',
-    '1按生产工人',
-  ]
+const Index = ({ width, style }) => {
+
 
   const CATEGORY = [
     {
@@ -74,7 +38,7 @@ const Index = ({width, style}) => {
     }
   ]
   return (
-    <div className={styles.mainArticleContent} style={{ width, ...style}}>
+    <div className={styles.mainArticleContent} style={{ width, ...style }}>
       <section className={styles.articleCategory}>
         <h1 className={styles.articleCategoryHeadline}>
           <span>种类</span>

@@ -40,7 +40,7 @@ function EditUserInfo(props) {
     },
     {
       label: '职位',
-      labelKey: 'position',
+      labelKey: 'posts',
       placeholder: '填写你的职位',
       maxLength: 50,
       type: 'text'

@@ -45,48 +45,48 @@ const CreactionCenter = (props) => {
   ];
 
   const dataSource = [
-    {
-      key: '1',
-      name: '胡彦斌',
-      age: 32,
-      address: '西湖区湖底公园1号',
-    },
-    {
-      key: '2',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号',
-    },
-    {
-      key: '3',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号',
-    },
-    {
-      key: '4',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号',
-    },
-    {
-      key: '4',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号',
-    },
-    {
-      key: '4',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号',
-    },
-    {
-      key: '4',
-      name: '胡彦祖',
-      age: 42,
-      address: '西湖区湖底公园1号',
-    },
+    // {
+    //   key: '1',
+    //   name: '胡彦斌',
+    //   age: 32,
+    //   address: '西湖区湖底公园1号',
+    // },
+    // {
+    //   key: '2',
+    //   name: '胡彦祖',
+    //   age: 42,
+    //   address: '西湖区湖底公园1号',
+    // },
+    // {
+    //   key: '3',
+    //   name: '胡彦祖',
+    //   age: 42,
+    //   address: '西湖区湖底公园1号',
+    // },
+    // {
+    //   key: '4',
+    //   name: '胡彦祖',
+    //   age: 42,
+    //   address: '西湖区湖底公园1号',
+    // },
+    // {
+    //   key: '4',
+    //   name: '胡彦祖',
+    //   age: 42,
+    //   address: '西湖区湖底公园1号',
+    // },
+    // {
+    //   key: '4',
+    //   name: '胡彦祖',
+    //   age: 42,
+    //   address: '西湖区湖底公园1号',
+    // },
+    // {
+    //   key: '4',
+    //   name: '胡彦祖',
+    //   age: 42,
+    //   address: '西湖区湖底公园1号',
+    // },
   ];
 
   const pushEditor = () => {
@@ -135,10 +135,6 @@ const CreactionCenter = (props) => {
             <span>0</span>
           </li>
           <li>
-            <span>总文章数</span>
-            <span>0</span>
-          </li>
-          <li>
             <span>文章阅读数</span>
             <span>0</span>
           </li>
@@ -148,6 +144,10 @@ const CreactionCenter = (props) => {
           </li>
           <li>
             <span>文章评论数</span>
+            <span>0</span>
+          </li>
+          <li>
+            <span>回复评论数</span>
             <span>0</span>
           </li>
           <li>

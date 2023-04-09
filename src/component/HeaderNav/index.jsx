@@ -50,7 +50,7 @@ function HeaderNav(props) {
     <header className={styles.headerContainer}>
       <nav className={styles.headerNav}>
         <div className={styles.navLeftBar}>
-          <Link to={'/home'}>首页</Link>
+          <Link to={'/home'}><img src="/src/assets/img/标题.png" alt=""></img></Link>
         </div>
         <ul className={styles.navRightBar}>
           <li className={styles.search}><input type="text" placeholder="查找"/><div className={styles.searchBtn}></div></li>
