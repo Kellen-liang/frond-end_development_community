@@ -43,7 +43,7 @@ const routes = [
   },
   {
     path: '/',
-    element: lazy(() => import('@/page/Home'))
+    element: lazy(() => import('@/page/Login'))
   }
 ]
 

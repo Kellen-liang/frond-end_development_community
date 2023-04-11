@@ -23,7 +23,7 @@ function Register() {
   };
 
   const sendData = async (data) => {
-    const res = await axios.post('http://localhost:3001/api/user/register', data)
+    const res = await axios.post('http://localhost:3002/api/user/register', data)
   }
 
 

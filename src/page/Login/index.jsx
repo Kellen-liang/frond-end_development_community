@@ -1,13 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useContext } from "react";
+import { message } from "antd";
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
-import axios from "axios";
+
+import { AuthContext } from '@/context/authContext'
 
 function Login() {
   const [formError, setFormError] = useState('')
   const [formData, setFormData] = useState({ username: '', password: '' });
   const navigate = useNavigate()
-  
+  const { currentUser, login } = useContext(AuthContext)
+
   const handFormChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -26,10 +29,16 @@ function Login() {
 
 
   const sendData = async (data) => {
-    axios.defaults.withCredentials = true
-    const res = await axios.post('http://localhost:3001/api/user/login', data)
-    console.log(res);
-    await axios.post('http://localhost:3001/api/user/get')
+    const { status, msg } = await login(data)
+    if(status === 1) {
+      message.success(msg)
+      navigate('/')
+    } else {
+      message.error(msg)
+    }
+    console.log('msg', msg);
+
+    console.log('currentUser', currentUser);
   }
 
 
