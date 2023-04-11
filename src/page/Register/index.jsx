@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
+import axios from "axios";
 
 
 function Register() {
@@ -18,7 +19,12 @@ function Register() {
     console.log(formData);
     const flag = validate(formData)
     console.log('registerFlag---', flag);
+    flag && sendData(formData)
   };
+
+  const sendData = async (data) => {
+    const res = await axios.post('http://localhost:3001/api/user/register', data)
+  }
 
 
   const validate = (formData) => {

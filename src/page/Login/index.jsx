@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
+import axios from "axios";
 
 function Login() {
   const [formError, setFormError] = useState('')
@@ -19,8 +20,18 @@ function Login() {
 
     const flag = validate(formData)
     console.log('flag---', flag);
+    flag && sendData(formData)
 
   };
+
+
+  const sendData = async (data) => {
+    axios.defaults.withCredentials = true
+    const res = await axios.post('http://localhost:3001/api/user/login', data)
+    console.log(res);
+    await axios.post('http://localhost:3001/api/user/get')
+  }
+
 
   //表单校验
   const validate = (formData) => {
