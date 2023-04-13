@@ -2,7 +2,6 @@ import React, { useState, useRef, useContext } from "react";
 import { message } from "antd";
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
-
 import { AuthContext } from '@/context/authContext'
 
 function Login() {
@@ -19,25 +18,19 @@ function Login() {
 
   const handleSubmit = (event, type) => {
     event.preventDefault();
-    console.log(formData);
-
     const flag = validate(formData)
-    console.log('flag---', flag);
     flag && sendData(formData)
-
   };
 
 
   const sendData = async (data) => {
-    const { status, msg } = await login(data)
+    const { status, errmsg } = await login(data)
     if(status === 1) {
-      message.success(msg)
-      navigate('/')
+      message.success('登录成功')
+      navigate('/home')
     } else {
-      message.error(msg)
+      message.error(errmsg)
     }
-    console.log('msg', msg);
-
     console.log('currentUser', currentUser);
   }
 

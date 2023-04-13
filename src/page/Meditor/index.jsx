@@ -64,7 +64,7 @@ const Meditor = (props) => {
           <Upload
             listType="picture"
             accept="image/png, image/jpeg"
-            action="/upload.do"
+            action="http://localhost:3002/api/upload"
           >
             <Button icon={<UploadOutlined />}>点击上传图片</Button>
           </Upload>

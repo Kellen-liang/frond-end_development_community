@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
-
+import { message } from "antd";
 
 function Register() {
   const [formError, setFormError] = useState('')
   const [formData, setFormData] = useState({ username: '', password: '', second_password: '', email: '' });
   const navigate = useNavigate()
-
   const handleFormChange = (event) => {
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
@@ -16,14 +15,20 @@ function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(formData);
     const flag = validate(formData)
-    console.log('registerFlag---', flag);
     flag && sendData(formData)
   };
 
   const sendData = async (data) => {
     const res = await axios.post('http://localhost:3002/api/user/register', data)
+    if (res.data.status) {
+      message.success('注册成功')
+      navigate('/login')
+    } 
+    else {
+      message.error(res.data.errmsg)
+    }
+
   }
 
 
