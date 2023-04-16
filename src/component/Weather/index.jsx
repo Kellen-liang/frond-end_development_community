@@ -21,16 +21,9 @@ function Weather({width, style}) {
    */
   const getWeatherInfo = async () => {
     try {
-      const res = await axios.get('https://www.yiketianqi.com/free/day', {
-        params: {
-          appid: '62565573',
-          appsecret: '6rCj71Gy',
-          unescape: '1',
-          vue: '1'
-        }
-        })
-      console.log(res);
-      setWeatherInfo(res?.data)
+      const res = await axios.get('http://localhost:3002/api/weatherInfo')
+      console.log('weatherInfo',res);
+      setWeatherInfo(res?.data?.data)
     } catch (error) {
       console.error(error);
     }

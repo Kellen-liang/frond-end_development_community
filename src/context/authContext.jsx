@@ -1,11 +1,13 @@
 import { createContext, useState, useEffect } from "react"
 import axios from "axios";
+import { getArticle } from "@/utils/apis";
 export const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(
     JSON.parse(localStorage.getItem('user')) || null
   )
+  
 
   const login = async (data) => {
     const res = await axios.post('http://localhost:3002/api/user/login', data)
@@ -23,7 +25,13 @@ export const AuthContextProvider = ({ children }) => {
   }, [currentUser])
 
   return (
-    <AuthContext.Provider value={{ currentUser, login, logout }}>
+    <AuthContext.Provider 
+      value={{ 
+        currentUser, 
+        login, 
+        logout, 
+      }}
+    >
       { children }
     </AuthContext.Provider>
   )

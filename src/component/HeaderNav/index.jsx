@@ -1,10 +1,15 @@
-import React from "react";
+import React , { useState, useContext }from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Popover } from "antd"
 import styles from "./index.module.scss"
+import { AuthContext } from "@/context/authContext";
+
 
 function HeaderNav(props) {
+  
+  
   const navigate = useNavigate()
+  const { searchData } = useContext(AuthContext)
   const onPushUserCenter = (e) => {
     const type = e.target.dataset.type
     if (!type) return 
@@ -26,6 +31,7 @@ function HeaderNav(props) {
   const onLogOut = () => {
     navigate('/login')
   }
+  
   
   
   const content = () => (
@@ -53,7 +59,10 @@ function HeaderNav(props) {
           <Link to={'/home'}><img src="/src/assets/img/标题.png" alt=""></img></Link>
         </div>
         <ul className={styles.navRightBar}>
-          <li className={styles.search}><input type="text" placeholder="查找"/><div className={styles.searchBtn}></div></li>
+          <li className={styles.search}>
+            {/* <input type="text" placeholder="查找" onChange={(e) => setValue(e.target.value?.trim())}/>
+            <div className={styles.searchBtn} onClick={sendData}></div> */}
+          </li>
           <li><Link to={'/inbox'}>Inbox</Link></li>
           <li><Link to={'/message'}>meseege</Link></li>
           <li><Link to={'/creactionCenter'}>CreactionCenter</Link></li>

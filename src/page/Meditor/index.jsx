@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./index.module.scss";
-import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import MEDitor from '@uiw/react-md-editor';
 import { UploadOutlined } from '@ant-design/icons';
-import { Popover, Form, Select, Radio, Upload, Button, Input } from 'antd'
-import { categoryTag } from "@/utils/common";
+import { Popover, Form, Select, Radio, Upload, Button, Input, message } from 'antd'
+import { categoryTag, TAG } from "@/utils/common";
+import { createNewArticle } from "@/utils/apis";
+
 
 const Meditor = (props) => {
+  const [articleTitle, setArticleTitle] = useState('')
+  const [articleContent, setArticleContent] = useState('')
 
-
+  const navigate = useNavigate()
   const normFile = (e) => {
     console.log('Upload event:', e);
     if (Array.isArray(e)) {
@@ -17,9 +21,31 @@ const Meditor = (props) => {
     return e?.fileList;
   }
 
+  const handleForm = (formData) => {
+    console.log('formData--',formData);
+    if(formData.tag?.length > 3) return message.error('文章标签不能超过3个')
+    const data = {
+      ...formData,
+      article_title: articleTitle,
+      article_content: articleContent,
+      article_cover: formData.article_cover ? formData?.article_cover[0].response.path : '',
+      tag: formData.tag?.join()
+    }
+    
+    console.log('data',data);
+    sendCreateArticle(data)
+  }
 
-  const handleForm = (value) => {
-    console.log(value);
+  const sendCreateArticle = async (data) => {
+    const res = await createNewArticle(data)
+    console.log(res);
+    if(res.data.status) {
+      message.success('创建成功')
+      navigate('/home')
+    } else
+    {
+      message.error(res.data.errmsg)
+    }
   }
   const releaseInfoForm = () => (
     <div className={styles.form}>
@@ -49,13 +75,11 @@ const Meditor = (props) => {
           rules={[{ required: true, message: '请添加标签！', type: 'array' }]}
         >
           <Select mode="multiple" placeholder="请搜索添加标签">
-            <Option value="red">Red</Option>
-            <Option value="green">Green</Option>
-            <Option value="blue">Blue</Option>
+            { TAG.map((item, index) => <Option key={index} value={item}>{item}</Option> )}
           </Select>
         </Form.Item>
         <Form.Item
-          name="cover"
+          name="article_cover"
           label="上传封面"
           valuePropName="fileList"
           getValueFromEvent={normFile}
@@ -64,13 +88,14 @@ const Meditor = (props) => {
           <Upload
             listType="picture"
             accept="image/png, image/jpeg"
+            maxCount={4}
             action="http://localhost:3002/api/upload"
           >
             <Button icon={<UploadOutlined />}>点击上传图片</Button>
           </Upload>
         </Form.Item>
         <Form.Item
-          name="intro"
+          name="article_intro"
           label="编辑简介"
           rules={[
             {
@@ -95,7 +120,7 @@ const Meditor = (props) => {
   )
 
 
-  const [markdown, setMarkdown] = useState('');
+  
   // useEffect(()=> {
   //   fetch('/src/assets/md/js基础知识.md')
   //   .then(response => response.text())
@@ -106,14 +131,14 @@ const Meditor = (props) => {
   // },[])
 
 
-  const demo = (value) => {
-    console.log('value', value);
-    setMarkdown(value)
+  const onChangeContent = (value) => {
+    // console.log('value', value);
+    setArticleContent(value)
   }
   return (
     <div className={styles.meditorContainer}>
       <header>
-        <input type="text" placeholder="输入文章标题" />
+        <input type="text" placeholder="输入文章标题" onChange={(e) => setArticleTitle(e.target.value?.trim())}/>
         <Popover
           trigger="click"
           placement="bottom"
@@ -127,8 +152,8 @@ const Meditor = (props) => {
       </header>
       <main>
         <MEDitor    // 编辑器
-          value={markdown}
-          onChange={demo}
+          value={articleContent}
+          onChange={onChangeContent}
           // width={1200} // 编辑器宽度
           height={'100%'} // 编辑器高度
         />
