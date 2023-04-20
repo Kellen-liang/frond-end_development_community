@@ -9,11 +9,11 @@ import { AuthContextProvider } from './context/authContext.jsx'
 axios.defaults.withCredentials = true
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <AuthContextProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </AuthContextProvider>
-  </React.StrictMode>,
+  // </React.StrictMode>,
 )

@@ -1,18 +1,39 @@
 import React, { useState, useEffect } from "react";
 import styles from "./index.module.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import MEDitor from '@uiw/react-md-editor';
 import { UploadOutlined } from '@ant-design/icons';
 import { Popover, Form, Select, Radio, Upload, Button, Input, message } from 'antd'
 import { categoryTag, TAG } from "@/utils/common";
-import { createNewArticle } from "@/utils/apis";
+import { createNewArticle, getArticleByid, updataArticle } from "@/utils/apis";
 
 
 const Meditor = (props) => {
   const [articleTitle, setArticleTitle] = useState('')
   const [articleContent, setArticleContent] = useState('')
+  const [data, setData] = useState({})
 
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    searchParams.get('id') && getArticle()
+  }, [])
+
+  const getArticle = async () => {
+    const params = {
+      id: searchParams.get('id'),
+      edit: true
+    }
+    const res = await getArticleByid(params)
+    console.log(res);
+    if (!res.data.status) { return message.error(res.data.errmsg || '请求出错') }
+    const { article_title, article_content } = res.data.data
+    setArticleTitle(article_title)
+    setArticleContent(article_content)
+    setData(res.data.data)
+  }
+
   const normFile = (e) => {
     console.log('Upload event:', e);
     if (Array.isArray(e)) {
@@ -21,29 +42,46 @@ const Meditor = (props) => {
     return e?.fileList;
   }
 
+
   const handleForm = (formData) => {
-    console.log('formData--',formData);
-    if(formData.tag?.length > 3) return message.error('文章标签不能超过3个')
-    const data = {
+    console.log('formData--', formData);
+    const id = searchParams.get('id') || ''
+    if (formData.tag?.length > 2) return message.error('文章标签不能超过2个')
+    const params = {
       ...formData,
       article_title: articleTitle,
       article_content: articleContent,
-      article_cover: formData.article_cover ? formData?.article_cover[0].response.path : '',
+      article_cover: formData.article_cover
+        ? (formData.article_cover[0]?.url
+          ? formData.article_cover[0].url
+          : formData.article_cover[0]?.response?.path || ''
+        )
+        : '',
       tag: formData.tag?.join()
     }
-    
-    console.log('data',data);
-    sendCreateArticle(data)
+
+    console.log('params', params);
+    id ? sendUpdataArticle({ id: id, ...params }) : sendCreateArticle(params)
   }
 
-  const sendCreateArticle = async (data) => {
-    const res = await createNewArticle(data)
+  const sendUpdataArticle = async (params) => {
+    const res = await updataArticle(params)
     console.log(res);
-    if(res.data.status) {
+    if (res.data.status) {
+      message.success('修改成功')
+      navigate('/home')
+    } else {
+      message.error(res.data.errmsg)
+    }
+  }
+
+  const sendCreateArticle = async (params) => {
+    const res = await createNewArticle(params)
+    console.log(res);
+    if (res.data.status) {
       message.success('创建成功')
       navigate('/home')
-    } else
-    {
+    } else {
       message.error(res.data.errmsg)
     }
   }
@@ -60,6 +98,7 @@ const Meditor = (props) => {
           style={{ fontSize: 20 }}
           name="category"
           label="分类"
+          initialValue={data?.category || ''}
           rules={[{ required: true, message: '请填入分类！' }]}
         >
           <Radio.Group buttonStyle="solid">
@@ -72,10 +111,11 @@ const Meditor = (props) => {
         <Form.Item
           name="tag"
           label="添加标签"
+          initialValue={data?.tag?.split(',') || []}
           rules={[{ required: true, message: '请添加标签！', type: 'array' }]}
         >
           <Select mode="multiple" placeholder="请搜索添加标签">
-            { TAG.map((item, index) => <Option key={index} value={item}>{item}</Option> )}
+            {TAG.map((item, index) => <Select.Option key={index} value={item}>{item}</Select.Option>)}
           </Select>
         </Form.Item>
         <Form.Item
@@ -84,11 +124,20 @@ const Meditor = (props) => {
           valuePropName="fileList"
           getValueFromEvent={normFile}
           extra="建议尺寸：1200 * 734"
+          initialValue={data?.article_cover ? [
+            {
+              uid: '-1',
+              name: 'image.png',
+              status: 'done',
+              url: data.article_cover,
+            }]
+            : []
+          }
         >
           <Upload
             listType="picture"
             accept="image/png, image/jpeg"
-            maxCount={4}
+            maxCount={1}
             action="http://localhost:3002/api/upload"
           >
             <Button icon={<UploadOutlined />}>点击上传图片</Button>
@@ -97,12 +146,8 @@ const Meditor = (props) => {
         <Form.Item
           name="article_intro"
           label="编辑简介"
-          rules={[
-            {
-              required: true,
-              message: '请输入简介',
-            },
-          ]}
+          initialValue={data?.article_intro || ''}
+          rules={[{ required: true, message: '请输入简介' }]}
         >
           <Input.TextArea showCount maxLength={100} rows={3} />
         </Form.Item>
@@ -120,7 +165,7 @@ const Meditor = (props) => {
   )
 
 
-  
+
   // useEffect(()=> {
   //   fetch('/src/assets/md/js基础知识.md')
   //   .then(response => response.text())
@@ -132,13 +177,12 @@ const Meditor = (props) => {
 
 
   const onChangeContent = (value) => {
-    // console.log('value', value);
     setArticleContent(value)
   }
   return (
     <div className={styles.meditorContainer}>
       <header>
-        <input type="text" placeholder="输入文章标题" onChange={(e) => setArticleTitle(e.target.value?.trim())}/>
+        <input type="text" placeholder="输入文章标题" value={articleTitle} onChange={(e) => setArticleTitle(e.target.value?.trim())} />
         <Popover
           trigger="click"
           placement="bottom"

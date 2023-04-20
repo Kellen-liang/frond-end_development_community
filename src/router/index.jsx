@@ -26,7 +26,7 @@ const routes = [
     element: lazy(() => import('@/page/CreactionCenter'))
   },
   {
-    path: '/article',
+    path: '/article/:id',
     element: lazy(() => import('@/page/Article'))
   },
   {
@@ -34,11 +34,11 @@ const routes = [
     element: lazy(() => import('@/page/Meditor'))
   },
   {
-    path: '/userCenter',
+    path: '/userCenter/:id',
     element: lazy(() => import('@/page/UserCenter')),
   },
   {
-    path: '/userCenter/editUserInfo',
+    path: '/userCenter/editUserInfo/:id',
     element: lazy(() => import('@/page/UserCenter/EditUserInfo')),
   },
   {

@@ -1,4 +1,4 @@
-import React , { useState, useContext }from "react";
+import React , { useContext }from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Popover } from "antd"
 import styles from "./index.module.scss"
@@ -9,41 +9,42 @@ function HeaderNav(props) {
   
   
   const navigate = useNavigate()
-  const { searchData } = useContext(AuthContext)
+  const { logout, currentUser } = useContext(AuthContext)
   const onPushUserCenter = (e) => {
     const type = e.target.dataset.type
     if (!type) return 
 
     switch (type) {
-      case 'mine': navigate('/userCenter', {state: {navKey: 'article'}})
+      case 'mine': navigate(`/userCenter/${currentUser.id}`, {state: {navKey: 'article'}})
         break;
-      case 'subscribe': navigate('/userCenter', {state: {navKey: 'subscribe'}})
+      case 'subscribe': navigate(`/userCenter/${currentUser.id}`, {state: {navKey: 'subscribe'}})
         break;
-      case 'like': navigate('/userCenter', {state: {navKey: 'like'}})
+      case 'like': navigate(`/userCenter/${currentUser.id}`, {state: {navKey: 'like'}})
         break;
-      case 'collect': navigate('/userCenter', {state: {navKey: 'collect'}})
+      case 'collect': navigate(`/userCenter/${currentUser.id}`, {state: {navKey: 'collect'}})
         break;
       default:
         break;
     }
   }
 
-  const onLogOut = () => {
+  const onLogOut = async () => {
+    const res = await logout()
+    console.log(res);
     navigate('/login')
   }
-  
   
   
   const content = () => (
     <div className={styles.userInfoPopover} onClick={onPushUserCenter}>
       <section className={styles.userInfoPopoverHeader}>
-        <img src="/src/assets/img/Icon.png" alt="" />
-        <span>Kellen</span>
+        <img src={currentUser?.user_icon || "/src/assets/img/Icon.png"} alt="" />
+        <span>{currentUser?.username}</span>
       </section>
       <section className={styles.userInfoPopoverNav}>
         <div data-type='subscribe'><span>0</span><span>关注</span></div>
-        <div data-type='like'><span>0</span><span>赞过</span></div>
-        <div data-type='collect'><span>0</span><span>收藏</span></div>
+        <div data-type='like'><span>{currentUser?.likeCount || 0}</span><span>赞过</span></div>
+        <div data-type='collect'><span>{currentUser?.collectCount || 0}</span><span>收藏</span></div>
       </section>
       <section className={styles.userInfoPopoverFooter}>
         <div data-type='mine'>个人中心</div>

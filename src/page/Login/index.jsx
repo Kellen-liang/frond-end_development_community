@@ -8,7 +8,7 @@ function Login() {
   const [formError, setFormError] = useState('')
   const [formData, setFormData] = useState({ username: '', password: '' });
   const navigate = useNavigate()
-  const { currentUser, login } = useContext(AuthContext)
+  const { login } = useContext(AuthContext)
 
   const handFormChange = (event) => {
     const { name, value } = event.target;
@@ -31,7 +31,6 @@ function Login() {
     } else {
       message.error(errmsg)
     }
-    console.log('currentUser', currentUser);
   }
 
 

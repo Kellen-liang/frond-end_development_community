@@ -1,20 +1,31 @@
-import React, { Suspense, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import styles from './index.module.scss'
-import { Link, Routes, Route, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Menu } from 'antd'
 import CommentCard from "./CommentCard";
 import LikeCard from "./LikeCard";
-import Loading from "@/component/Loading";
-import { Empty } from "antd";
+import { Empty, message } from "antd";
+import { 
+  getMessageLikeList, 
+  getMessageCommentList,
+  createReply
+ } from "@/utils/apis";
 import {
   SmileOutlined,
-  StarOutlined,
   MessageOutlined,
 } from '@ant-design/icons'
-import { cloneDeep } from "lodash";
+import moment from "moment";
 
 function Message(props) {
+  const [likes, setLike] = useState([])
+  const [comments, setComments] = useState([]);
+  useEffect(()=>{
+    getLikeList()
+    getCommentList()
+  },[])
   const navigate = useNavigate()
+
+  
   //菜单列表
   const menu = useRef([
     {
@@ -53,7 +64,6 @@ function Message(props) {
       },
       
   ]
-  const [comments, setComments] = useState(commentList);
   //点赞数据
   const likeList = [
     { 
@@ -81,8 +91,19 @@ function Message(props) {
       user_icon: '/src/assets/svg/带刀剑士.svg',
     },
   ]
-  const [likes, setLike] = useState(likeList)
   
+
+  const getLikeList = async () => {
+    const res = await getMessageLikeList()
+    setLike(res.data.data)
+  }
+
+  const getCommentList = async () => {
+    const res = await getMessageCommentList()
+    setComments(res.data.data)
+  }
+  
+
   //事件操作:  
   //点赞和评论页操作
   /**
@@ -90,8 +111,14 @@ function Message(props) {
    * @param {string} username -用户名
    * @param {object} record -当前整条数据
    */
-  const onGetuserInfo = (username, record) => {
-    console.log(username, record);
+  const onLikeGetuserInfo = (username, record) => {
+    console.log(record);
+    const { likesUserId } = record
+    navigate(`/userCenter/${likesUserId}`)
+  }
+
+  const onCommentGetuserInfo = (username, record) => {
+
   }
 
   /**
@@ -101,6 +128,7 @@ function Message(props) {
    */
   const onSearchArticl = (articleId, record) => {
     console.log(articleId, record);
+    navigate(`/article/${articleId}`,)
   }
 
   /**
@@ -110,8 +138,22 @@ function Message(props) {
    * @param {*} value -回复内容
    * @param {*} record -当前整条数据
    */
-  const onReply = (id, replyLate, value, record) => {
-    console.log(id, replyLate, value, record);
+  const onReply = async (id, replyLate, value, record) => {
+    // console.log(id, replyLate, value, record);
+    const { id: article_id, comment_id, create_comment_user_id } = record
+    const params = {
+      article_id,
+      content: value,
+      comment_id,
+      reply_late_id: create_comment_user_id
+    }
+    const res = await createReply(params)
+    if(res.data.status) {
+      message.success('回复成功')
+    }
+    else {
+      message.error(res.data?.errmsg || '回复失败')
+    }
   }
 
 
@@ -136,14 +178,14 @@ function Message(props) {
     likes.length ? (
       likes.map((item, index) => (
         <LikeCard
-          key={item.article_id}
+          key={item.id}
           record={item}
-          userIcon={item.user_icon}
-          username={item.username}
-          addTime={item.add_time}
-          sourceId={item.article_id}
+          userIcon={item.likesUserIcon}
+          username={item.likesUsername}
+          addTime={moment(item.createDate).format('YYYY-MM-DD')}
+          sourceId={item.id}
           sourceTitle={item.article_title}
-          onGetuserInfo={onGetuserInfo}
+          onGetuserInfo={onLikeGetuserInfo}
           onSearchArticl={onSearchArticl}
         />
       ))
@@ -156,14 +198,14 @@ function Message(props) {
         <CommentCard
           key={item.comment_id}
           record={item}
-          userIcon={item.user_icon}
-          username={item.username}
-          content={item.content}
-          addTime={item.add_time}
-          sourceId={item.article_id}
+          userIcon={item.comment_user_icon}
+          username={item.create_comment_username}
+          content={item.comment_content}
+          addTime={moment(item.comment_create_date).format('YYYY-MM-DD')}
+          sourceId={item.id}
           sourceTitle={item.article_title}
-          isReply={item.isReply}
-          onGetuserInfo={onGetuserInfo}
+          isReply={0}
+          onGetuserInfo={onCommentGetuserInfo}
           onReply={onReply}
           onSearchArticl={onSearchArticl}
         />

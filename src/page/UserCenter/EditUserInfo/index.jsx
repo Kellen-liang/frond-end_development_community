@@ -1,13 +1,18 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import styles from './index.module.scss'
-import { Menu } from 'antd'
+import { Menu, message } from 'antd'
 import { LeftOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons'
 import Form from "./Form";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { getUserInfo, updataUserInfo, updataUserPassword } from "@/utils/apis";
+import { AuthContext } from "@/context/authContext";
+
 
 function EditUserInfo(props) {
-
+  const { id } = useParams()
   const navigate = useNavigate()
+  const { logout } = useContext(AuthContext)
+  const [userInfo, setUserInfo] = useState({})
   //菜单列表
   const menu = useRef([
     {
@@ -30,11 +35,22 @@ function EditUserInfo(props) {
     setMenuKey(key)
   }
 
+  useEffect(() => {
+    getUserInfoById(id)
+  },[])
+
+  const getUserInfoById = async (id) => {
+    const params = { id }
+    const res = await getUserInfo(params)
+    setUserInfo(res.data.data)
+  }
+
   const userInfoFromItem = [
     {
       label: '用户名',
       labelKey: 'username',
       placeholder: '填写你的用户名',
+      defaultValue: userInfo.username || '',
       maxLength: 10,
       type: 'text'
     },
@@ -42,6 +58,7 @@ function EditUserInfo(props) {
       label: '职位',
       labelKey: 'posts',
       placeholder: '填写你的职位',
+      defaultValue: userInfo.posts || '',
       maxLength: 50,
       type: 'text'
     },
@@ -49,20 +66,23 @@ function EditUserInfo(props) {
       label: '公司',
       labelKey: 'company',
       placeholder: '填写你的公司',
+      defaultValue: userInfo.company || '',
       maxLength: 50,
       type: 'text'
     },
     {
-      label: '主页介绍',
-      labelKey: 'main_page_introduction',
+      label: '邮箱',
+      labelKey: 'email',
       placeholder: '填写你的主页介绍',
-      maxLength: 100,
+      defaultValue: userInfo.email || '',
+      maxLength: 20,
       type: 'text'
     },
     {
       label: '个人介绍',
       labelKey: 'introduction',
       placeholder: '填写你的个性签名',
+      defaultValue: userInfo.introduction || '',
       maxLength: 100,
       type: 'textarea'
     },
@@ -70,21 +90,21 @@ function EditUserInfo(props) {
   const userPasswordFromItem = [
     {
       label: '现密码',
-      labelKey: 'nowPassword',
+      labelKey: 'current_password',
       placeholder: '输入你现在的密码',
       maxLength: 20,
       type: 'password'
     },
     {
       label: '新密码',
-      labelKey: 'newPassword',
+      labelKey: 'new_password',
       placeholder: '输入你的新密码',
       maxLength: 20,
       type: 'password'
     },
     {
       label: '再次输入',
-      labelKey: 'newPassword_second',
+      labelKey: 'new_password_second',
       placeholder: '再次输入新密码',
       maxLength: 20,
       type: 'password'
@@ -92,8 +112,36 @@ function EditUserInfo(props) {
     
   ]
   //个人资料提交事件
-  const onHandleUserInfo = (formData) => {
+  const onHandleUserInfo = async (formData) => {
     console.log('----',formData);
+    if (menuKey === 'userInfo') {
+      const res = await updataUserInfo({...formData, id})
+      if(res.data?.status === 0) {
+        message.error(res.data.errmsg || '修改失败，服务器请求错误')
+      }
+      else {
+        message.success('修改成功')
+        getUserInfoById(id)
+      }
+    } 
+    else {
+      if (formData.new_password !== formData.new_password_second) return message.error('两次输入的密码不一致')
+      if (formData.new_password.length < 8) return message.error('新密码必须大于或等于8位')
+      const params = {
+        id,
+        current_password: formData.current_password,
+        new_password: formData.new_password
+      }
+      const res = await updataUserPassword(params)
+      if(res.data?.status === 0) {
+        message.error(res.data.errmsg || '修改失败，服务器请求错误')
+      }
+      else {
+        await logout()
+        message.success('修改成功，请重新登录')
+        navigate('/login')
+      }
+    }
   }
   return (
     <div className={styles.editUserInfoContainer}>
