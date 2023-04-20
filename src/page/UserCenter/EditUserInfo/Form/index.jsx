@@ -1,9 +1,19 @@
 import React, { useState } from "react";
 import styles from './index.module.scss'
+import { useLayoutEffect } from "react";
 
 function Form(props) {
   const { fromItem = [], onSubmit , submitBtnText = 'Submit'} = props
-  const [formData, setFormData] = useState({});
+
+  const [formData, setFormData] = useState();
+
+  useLayoutEffect(() => {
+    const defaultValue = {}
+    fromItem.forEach(item => {
+      defaultValue[item.labelKey] = item.defaultValue || ''
+    });
+    setFormData(defaultValue)
+  },[fromItem])
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -15,29 +25,28 @@ function Form(props) {
     onSubmit(formData)
   };
 
-
   const selectFormItem = (item) => {
-    const {type, label, labelKey, placeholder, maxLength} = item
+    const {type, label, labelKey, placeholder, maxLength, defaultValue} = item
     switch (type) {
       case 'text': return (
         <label className={styles.formItem} key={labelKey}>
           <span>{label}</span>
-            <input type="text" name={labelKey} placeholder={placeholder} maxLength={maxLength} onChange={handleChange} />
-          <span className={styles.suffix}>{formData?.labelKey?.length || 0}/{maxLength}</span>
+          <input type="text" name={labelKey} defaultValue={defaultValue}  placeholder={placeholder} maxLength={maxLength} onChange={handleChange} />
+          {/* <span className={styles.suffix}>{formData.labelKey|| 0}/{maxLength}</span> */}
         </label>
       )
       case 'password': return (
         <label className={styles.formItem} key={labelKey}>
           <span>{label}</span>
-            <input type="text" name={labelKey} placeholder={placeholder} maxLength={maxLength} onChange={handleChange} />
-          <span className={styles.suffix}>{formData?.labelKey?.length || 0}/{maxLength}</span>
+          <input type="password" name={labelKey}  maxLength={maxLength} onChange={handleChange} />
+          {/* <span className={styles.suffix}>{formData?.labelKey?.length || 0}/{maxLength}</span> */}
         </label>
       )
       case 'textarea': return (
         <label className={styles.formItem} key={labelKey}>
           <span>{label}</span>
-          <textarea name={labelKey} placeholder={placeholder} rows={5} maxLength={maxLength} onChange={handleChange} />
-          <span className={styles.textareaSuffix}>{formData?.labelKey?.length || 0}/{maxLength}</span>
+          <textarea name={labelKey} placeholder={placeholder} defaultValue={defaultValue} rows={5} maxLength={maxLength} onChange={handleChange} />
+          {/* <span className={styles.textareaSuffix}>{formData?.labelKey?.length || 0}/{maxLength}</span> */}
         </label>
       )
       default: return

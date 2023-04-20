@@ -1,59 +1,72 @@
 import React, { useState, useRef, useLayoutEffect } from "react";
 import styles from './index.module.scss'
-import { Tag, Menu, Empty } from "antd";
-import { EditOutlined, PlusOutlined, MailOutlined } from '@ant-design/icons'
-import { useLocation, useNavigate } from "react-router-dom"
+import { Menu, Empty } from "antd";
+import { EditOutlined } from '@ant-design/icons'
+import { useLocation, useNavigate, useParams } from "react-router-dom"
 import ArticleCard from "@/component/ArticleCard";
 import SubscribeCard from "./SubscribeCard";
+import { 
+  getArticleByUserId, 
+  getLikeList, 
+  getCollectList,
+  getUserInfo
+} from "@/utils/apis";
+import moment from "moment";
+import { cloneDeep } from "lodash";
  
 
 function UserCenter(props) {
   const { state } = useLocation()
+  const navigate = useNavigate()
+  const params = useParams()
+  const userIdRef = useRef('')
+  const [userInfo, setUserInfo] = useState([])
+  const [articelData, setArticelData] = useState([])
+  const [likeArticelData, setLikeArticelData] = useState([])
+  const [colletArticelData, setColletArticelData] = useState([])
+  const [menuKey, setMenuKey] = useState( state?.navKey )
+  const [isMime, setIsMine] = useState(false)
+  
+
   useLayoutEffect(() => {
     setMenuKey(state?.navKey)
-  }, [state])
+    
+    const id = params.id
+    userIdRef.current = id
+    getUserInfoById(id)
+    getArticle(id)
+    getLikes(id)
+    getCollects(id)
 
-  const navigate = useNavigate()
-  const [menuKey, setMenuKey] = useState( state?.navKey )
-  const isMime = true
-  //文章
-  const articleList = [
-    {
-      'id': '001',
-      'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
-      'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
-      'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
-      'tag': ['前端', 'JS'],
-      'article': '文章正文',
-      'add-time': '创建时间',
-      'update-time': '更新时间',
-      'count': 20,
-      'likes': 14,
-      'is-like': false,
-      'comments': 12,
-      'is-comment': false,
-    },
-    {
-      'id': '002',
-      'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
-      'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
-      'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
-      'tag': ['前端', 'JS'],
-      'article': '文章正文',
-      'add-time': '创建时间',
-      'update-time': '更新时间',
-      'count': 20,
-      'likes': 14,
-      'is-like': false,
-      'comments': 12,
-      'is-comment': false,
-    }
-  ]
-  const [data, setData] = useState(articleList)
+  }, [state])
+ 
+
+  const getUserInfoById = async (id) => {
+    const params = { id }
+    const res = await getUserInfo(params)
+    setUserInfo(res.data.data)
+    setIsMine(res.data.data.isMine)
+    console.log(res);
+  }
+
+  const getArticle = async (id) => {
+    const params = { id }
+    const res = await getArticleByUserId(params)
+    setArticelData(res.data.data)
+  }
+
+  const getLikes = async (id) => {
+    const params = { id }
+    const res = await getLikeList(params)
+    setLikeArticelData(res.data.data)
+  }
+
+  const getCollects = async (id) => {
+    const params = { id }
+    const res = await getCollectList(params)
+    setColletArticelData(res.data.data)
+  }
+
   //订阅
   const subscribes = [
     {
@@ -101,29 +114,24 @@ function UserCenter(props) {
   const menu = useRef([
     {
       key: 'article',
-      // icon: <SmileOutlined />,
       label: '文章'
     },
     {
       key: 'like',
-      // icon: <SmileOutlined />,
       label: '赞过'
     },
     {
       key: 'collect',
-      // icon: <SmileOutlined />,
       label: '收藏'
     },
-    {
-      key: 'subscribe',
-      // icon: <MessageOutlined />,
-      label: '关注'
-    },
-    {
-      key: 'beSubscribe',
-      // icon: <StarOutlined />,
-      label: '粉丝'
-    },
+    // {
+    //   key: 'subscribe',
+    //   label: '关注'
+    // },
+    // {
+    //   key: 'beSubscribe',
+    //   label: '粉丝'
+    // },
   ])
 
   //事件操作:
@@ -132,22 +140,17 @@ function UserCenter(props) {
    * 操作：点赞，评论
    * @param {'comments'|'likes'} type -操作类型
    * @param {number} value  -值
+   * @param {boolean} selected  -是否已经选择
    * @param {number} index  -下标
    * @param {object} record -当前整条数据
    */
-  const onOperateClick = (type, value, index, record) => {
+  const onOperateClick = async (type, value, selected, index, record) => {
     if (type === 'likes') {
-      const tempData = cloneDeep(data)
-      tempData.forEach((item, _index) => {
-        if (_index === index) {
-          item['is-like'] = !item['is-like']
-          item.likes = item['is-like'] ? value + 1 : value - 1
-        }
-      })
-      setData(tempData)
+      
     }
     else {
-      console.log(value);
+      const { id } = record 
+      navigate(`/article/${id}`,) 
     }
   }
 
@@ -158,13 +161,14 @@ function UserCenter(props) {
    * @param {'userIcon'|'user'|'tag'|'other'} type - 触发事件的类型：userIcon | user | tag | other
    */
   const onArticleClick = (value, record, type) => {
-    console.log('type---', type);
-    console.log('value---', value);
-    if (value.length) {
-
+    if (type === 'user' || type === 'userIcon') {
+      const { user_id } = record 
+      console.log(user_id);
+      navigate(`/userCenter/${user_id}`)      
     }
     else {
-      navigate('/article')
+      const { id } = record
+      navigate(`/article/${id}`,)     
     }
   }
 
@@ -201,14 +205,24 @@ function UserCenter(props) {
   const isMimeInfoJSX = () => (
     <>
       <div className={styles.userCard}>
-        <section className={styles.userCardLeft}><img src="/src/assets/svg/带刀剑士.svg" alt="" /></section>
+        <section className={styles.userCardLeft}><img src={userInfo.user_icon} alt="" /></section>
         <section className={styles.userCardCenter}>
-          <h2>Kellen</h2>
-          <div className={styles.userInfo}>+ 添加从事的职业</div>
-          <div className={styles.userInfo}>+ 添加个性签名</div>
+          <h2>{userInfo?.username || ''}</h2>
+          <div 
+            className={styles.userInfo}
+            onClick={() => { navigate(`/userCenter/editUserInfo/${userIdRef.current}`)}}
+          >
+            {userInfo?.posts ? userInfo?.posts : '+ 添加从事的职业'}
+          </div>
+          <div 
+            className={styles.userInfo}
+            onClick={() => { navigate(`/userCenter/editUserInfo/${userIdRef.current}`)}}
+          >
+            {userInfo?.introduction ? userInfo?.introduction : '+ 添加个性签名'}
+          </div>
         </section>
         <section className={styles.userCardRight}>
-          <div className={styles.editBtn} onClick={() => { navigate('/userCenter/editUserInfo')}}><EditOutlined /> 编辑个人信息</div>
+          <div className={styles.editBtn} onClick={() => { navigate(`/userCenter/editUserInfo/${userIdRef.current}`)}}><EditOutlined /> 编辑个人信息</div>
         </section>
       </div>
     </>
@@ -217,16 +231,16 @@ function UserCenter(props) {
   const notMimeInfoJSX = () => (
     <>
       <div className={styles.userCard}>
-        <section className={styles.userCardLeft}><img src="/src/assets/svg/带刀剑士.svg" alt="" /></section>
+        <section className={styles.userCardLeft}><img src={userInfo.user_icon} alt="" /></section>
         <section className={styles.userCardCenter}>
-          <h2>Kellen</h2>
-          <div>+ 添加从事的职业</div>
-          <div>+ 添加个性签名</div>
+          <h2>{userInfo?.username || ''}</h2>
+          <div>{userInfo?.posts ? userInfo?.posts : '没有职业描述'}</div>
+          <div>{userInfo?.introduction ? userInfo?.introduction : '+ 没有个性签名'}</div>
         </section>
-        <section className={styles.userCardRight}>
+        {/* <section className={styles.userCardRight}>
           <div className={styles.concernBtn}><PlusOutlined /> 关注</div>
           <div className={styles.inboxBtn} style={{ marginLeft: 20 }}><MailOutlined /> 私信</div>
-        </section>
+        </section> */}
       </div>
     </>
   )
@@ -242,8 +256,8 @@ function UserCenter(props) {
   const showContent = (key) => {
     switch (key) {
       case 'article': return articleContentJSX()
-      case 'like': return articleContentJSX()
-      case 'collect': return articleContentJSX()
+      case 'like': return likeArticleContentJSX()
+      case 'collect': return collectArticleContentJSX()
       case 'subscribe': return subscribeContentJSX()
       case 'beSubscribe': return beSubscribeContentJSX()
       default: return
@@ -251,8 +265,8 @@ function UserCenter(props) {
   }
 
   const articleContentJSX = () => (
-    data.length ? (
-      data.map((item, index) => (
+    articelData.length ? (
+      articelData.map((item, index) => (
         <ArticleCard
           width={'100%'}
           isHaveHoverShadow={false}
@@ -260,23 +274,95 @@ function UserCenter(props) {
           key={item.id}
           index={index}
           record={item}
-          cover={item.cover}
+          cover={item.article_cover}
           header={{
-            userIcon: item['user-icon'],
-            userName: item.author,
-            addTime: item['add-time'],
-            tags: item.tag,
+            userIcon: item.user_icon,
+            userName: item.username,
+            addTime: moment(item.updatedAt).format('YYYY-MM-DD'),
+            tags: item.tag.split(','),
           }}
           content={{
-            title: item.title,
-            intro: item.intro,
+            title: item.article_title,
+            intro: item.article_intro,
           }}
           operate={{
-            count: item.count,
-            likes: item.likes,
-            isLike: item['is-like'],
-            comments: item.comments,
-            isComment: item['is-comment'],
+            count: item?.count || 0,
+            likes: item?.likes || 0,
+            comments: item?.comment_count || 0,
+            isLike: item?.is_like || false,
+            isComment: item.is_comment || false,
+          }}
+
+          onClick={onArticleClick}
+          onOperateClick={onOperateClick}
+        />
+      ))
+    ) : <Empty className={styles.empty} />
+  )
+
+  const likeArticleContentJSX = () => (
+    likeArticelData.length ? (
+      likeArticelData.map((item, index) => (
+        <ArticleCard
+          width={'100%'}
+          isHaveHoverShadow={false}
+          style={{ boxShadow: 'none' }}
+          key={item.id}
+          index={index}
+          record={item}
+          cover={item.article_cover}
+          header={{
+            userIcon: item.user_icon,
+            userName: item.username,
+            addTime: moment(item.updatedAt).format('YYYY-MM-DD'),
+            tags: item.tag.split(','),
+          }}
+          content={{
+            title: item.article_title,
+            intro: item.article_intro,
+          }}
+          operate={{
+            count: item?.count || 0,
+            likes: item?.likes || 0,
+            comments: item?.comment_count || 0,
+            isLike: item?.is_like || false,
+            isComment: item.is_comment || false,
+          }}
+
+          onClick={onArticleClick}
+          onOperateClick={onOperateClick}
+        />
+      ))
+    ) : <Empty className={styles.empty} />
+  )
+
+  const collectArticleContentJSX = () => (
+    colletArticelData.length ? (
+      colletArticelData.map((item, index) => (
+        <ArticleCard
+          width={'100%'}
+          isHaveHoverShadow={false}
+          style={{ boxShadow: 'none' }}
+          key={item.id}
+          index={index}
+          record={item}
+          cover={item.article_cover}
+          header={{
+            userIcon: item.user_icon,
+            userName: item.username,
+            addTime: moment(item.updatedAt).format('YYYY-MM-DD'),
+            tags: item.tag.split(','),
+          }}
+          content={{
+            title: item.article_title,
+            intro: item.article_intro,
+          }}
+          operate={{
+            count: item?.count || 0,
+            likes: item?.likes || 0,
+            comments: item?.comment_count || 0,
+            isLike: item?.is_like || false,
+            isComment: item.is_comment || false,
           }}
 
           onClick={onArticleClick}
@@ -341,15 +427,15 @@ function UserCenter(props) {
         <div className={styles.successCard}>
           <h2>个人成就</h2>
           <ul>
-            <li><img src="/src/assets/img/已点赞.png" alt="" /><span>文章被点赞 3</span></li>
-            <li><img src="/src/assets/img/已查看.png" alt="" /><span>文章被阅读 512</span></li>
-            <li><img src="/src/assets/img/已评论.png" alt="" /><span>文章被评论 124</span></li>
+            <li><img src="/src/assets/img/已点赞.png" alt="" /><span>文章被点赞 {userInfo.countLike || 0}</span></li>
+            <li><img src="/src/assets/img/已查看.png" alt="" /><span>文章被阅读 {userInfo.countLook || 0}</span></li>
+            <li><img src="/src/assets/img/已评论.png" alt="" /><span>文章被评论 {userInfo.countComment || 0}</span></li>
           </ul>
         </div>
-        <div className={styles.countCard}>
+        {/* <div className={styles.countCard}>
           <div onClick={() => setMenuKey('subscribe')}><span>关注了</span><span className={styles.count}>123</span></div>
           <div onClick={() => setMenuKey('beSubscribe')}><span>关注者</span><span className={styles.count}>123</span></div>
-        </div>
+        </div> */}
       </aside>
     </div>
   )

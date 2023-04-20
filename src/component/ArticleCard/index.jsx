@@ -67,8 +67,9 @@ function ArticleCard(props) {
     //触发事件的类型：likes | comments
     const type = e.target.dataset.type
     const value = Number(e.target.innerText)
+    const selected = operate.isLike
     if (eventElement === 'li') {
-      props.onOperateClick(type, value, index, record)
+      props.onOperateClick(type, value, selected, index, record)
     }
     else {
       return

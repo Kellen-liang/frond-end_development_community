@@ -106,7 +106,7 @@ function Inbox(props) {
           className={`${styles.inboxChatInput} customScorllType`}
           onKeyDown={handleKeyDown}
           value={chatInputContent}
-          onChange={(e) => setChatInputContent(e.target.value)}
+          onChange={(e) => setChatInputContent(e.target.value.trim())}
           ></textarea>
       </section>
     </div>

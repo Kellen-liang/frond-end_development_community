@@ -19,7 +19,7 @@ function Information({ width, style }) {
         style={{marginTop : 20}}
       />
       <ul className={styles.informationList}>
-        <li className={styles.informationListItem}><a href="https://github.com/" target="_blank"><img src="/src/assets/img/github.png" alt=""/></a><div className={`${styles.informationListItemTag} ${styles.darkTag}`}>github</div></li>
+        <li className={styles.informationListItem}><a href="https://github.com/Kellen-liang/frond-end_development_community" target="_blank"><img src="/src/assets/img/github.png" alt=""/></a><div className={`${styles.informationListItemTag} ${styles.darkTag}`}>github</div></li>
         <li className={styles.informationListItem}><a href="https://juejin.cn/" target="_blank"><img src="/src/assets/img/掘金.jpg" alt=""/></a><div className={styles.informationListItemTag}>稀土掘金</div></li>
       </ul> 
     </div>

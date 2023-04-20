@@ -1,6 +1,5 @@
 import { createContext, useState, useEffect } from "react"
 import axios from "axios";
-import { getArticle } from "@/utils/apis";
 export const AuthContext = createContext()
 
 export const AuthContextProvider = ({ children }) => {
@@ -12,12 +11,14 @@ export const AuthContextProvider = ({ children }) => {
   const login = async (data) => {
     const res = await axios.post('http://localhost:3002/api/user/login', data)
     if (res.data.status === 1) setCurrentUser(res.data.data)
+    setCurrentUser(res.data.data)
     return res.data
   }
 
   const logout = async () => {
-    await axios.post('http://localhost:3002/api/user/logout')
+    const res = await axios.post('http://localhost:3002/api/user/logout')
     setCurrentUser(null)
+    return res.data
   }
 
   useEffect(() => {

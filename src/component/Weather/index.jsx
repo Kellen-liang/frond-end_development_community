@@ -40,16 +40,16 @@ function Weather({width, style}) {
     <div className={styles.weather} style={{width, ...style}} onClick={pushWeatherDetail}>
       <div className={styles.time}><span>{time}</span></div>
       <div className={styles.date}>
-        <span>{weatherInfo.date}</span>
-        <span>{weatherInfo.week}</span>
+        <span>{weatherInfo?.date || '2023-4-17'}</span>
+        <span>{weatherInfo?.week || '星期一'}</span>
       </div>
       <ul className={styles.weatherInfo}>
-        <li><img src="/src/assets/weather/天气属性/地址-on.svg" alt="" /><span>{weatherInfo.city}</span></li>
-        <li><img src="/src/assets/weather/天气属性/温度计.svg" alt="" /><span>{weatherInfo.tem}</span></li>
-        <li><img src={weatherList[weatherInfo.wea_img] || weatherList['qing']} alt="" /><span>{weatherInfo.wea}</span></li>
-        <li><img src="/src/assets/weather/天气属性/风向.svg" alt="" /><span>{weatherInfo.win}</span></li>
-        <li><img src="/src/assets/weather/天气属性/湿度.svg" alt="" /><span>{weatherInfo.humidity}</span></li>
-        <li><img src="/src/assets/weather/天气属性/大气.svg" alt="" /><span>{weatherInfo.pressure}</span></li>
+        <li><img src="/src/assets/weather/天气属性/地址-on.svg" alt="" /><span>{weatherInfo?.city || '广州'}</span></li>
+        <li><img src="/src/assets/weather/天气属性/温度计.svg" alt="" /><span>{weatherInfo?.tem || 29}</span></li>
+        <li><img src={weatherList[weatherInfo?.wea_img || 'yun'] || weatherList['qing']} alt="" /><span>{weatherInfo?.wea || '多云'}</span></li>
+        <li><img src="/src/assets/weather/天气属性/风向.svg" alt="" /><span>{weatherInfo?.win || '南风'}</span></li>
+        <li><img src="/src/assets/weather/天气属性/湿度.svg" alt="" /><span>{weatherInfo?.humidity || '27%'}</span></li>
+        <li><img src="/src/assets/weather/天气属性/大气.svg" alt="" /><span>{weatherInfo?.pressure || '987'}</span></li>
       </ul>
     </div>
   )

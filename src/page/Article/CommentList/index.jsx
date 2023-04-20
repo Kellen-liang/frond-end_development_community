@@ -1,9 +1,10 @@
 import React from "react";
 import { useState } from "react";
 import styles from "./index.module.scss"
+import moment from "moment";
 
 function Comment(props) {
-  const { commentId, username, userIcon, content, addTime, replyLate, canDel, onReply, onGetuserInfo, onDel } = props
+  const { commentId, username, userIcon, content, addTime, replyLate, canDel, onReply, onGetuserInfo, onDel, record } = props
   
   const [isShowReply, setIsShowReply] = useState(false)
   const [replyValue, setReplyValue] = useState('')
@@ -11,11 +12,11 @@ function Comment(props) {
 
   //回复按钮事件
   const _onReply = () => {
-    console.log('username', username); 
-    console.log('replyLate', replyLate);  //回复对象名
-    console.log('replyValue', replyValue);  //回复内容
+    // console.log('username', username); 
+    // console.log('replyLate', replyLate);  //回复对象名
+    // console.log('replyValue', replyValue);  //回复内容
 
-    onReply(replyLate, replyValue)
+    onReply(replyLate, replyValue, record)
 
     setReplyValue('')
     setIsShowReply(false)
@@ -23,16 +24,14 @@ function Comment(props) {
 
   //删除事件
   const _onDel = () => {
-    console.log('reply_late', replyLate); //回复对象
-    console.log('commentId', commentId); //评论/回复唯一id
-
-    onDel(commentId, replyLate)
+    onDel(record)
   }
 
   //获取用户信息事件
   const _onGetuserInfo = () => {
-    console.log('username', username); //目标用户名
-    onGetuserInfo(username)
+    // console.log('username', username); //目标用户名
+    // console.log('record',record);
+    onGetuserInfo(username, record)
   }
   return (
     <div className={styles.commentContainer}>
@@ -84,7 +83,7 @@ function Comment(props) {
 
 
 function CommentList(props) {
-  const { commentId, username, userIcon, content, addTime, replyCommentList, canDel, onReply, onGetuserInfo, onDel } = props
+  const { commentId, username, userIcon, content, addTime, replyCommentList, canDel, onReply, onGetuserInfo, onDel, record } = props
 
   return (
     <div className={styles.commentContainer}>
@@ -95,6 +94,7 @@ function CommentList(props) {
         userIcon={userIcon}
         content={content}
         addTime={addTime}
+        record={record}
         canDel={canDel}
         onReply={onReply}
         onGetuserInfo={onGetuserInfo}
@@ -106,14 +106,15 @@ function CommentList(props) {
           <div className={styles.replyContainer}>
             {replyCommentList.map((item, index) => (
               <Comment
-                key={index}
+                key={item.id}
                 commentId={item.comment_id}
                 username={item.username}
-                userIcon={item.userIcon}
+                userIcon={item.user_icon}
                 content={item.content}
-                addTime={item.addTime}
-                canDel={item.canDel}
+                addTime={moment(item.createdAt).format('YYYY-MM-DD')}
                 replyLate={item.reply_late}
+                canDel={item.isMine}
+                record={item}
                 onReply={onReply}
                 onGetuserInfo={onGetuserInfo}
                 onDel={onDel}

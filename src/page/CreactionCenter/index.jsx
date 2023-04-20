@@ -1,26 +1,43 @@
 import React from "react";
 import styles from "./index.module.scss";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { Menu, Table } from 'antd'
-
+import { Menu, Table, message } from 'antd'
+import { AuthContext } from "@/context/authContext";
+import { getArticleByUserId, getUserInfo, deleteArticle } from "@/utils/apis";
+import moment from "moment";
+import { Empty } from "antd";
 const CreactionCenter = (props) => {
+  const [data, setData] = useState([])
+  const [statistics, setStatistics] = useState({})
+  const currentUserId = useRef('')
   const navigate = useNavigate()
+  const { currentUser } = useContext(AuthContext)
+
+  useEffect(() => {
+    currentUserId.current = currentUser.id
+    getArticle(currentUser.id)
+    getArticleStatistics(currentUser.id)
+  }, [])
+
   const columns = [
     {
       title: '文章标题',
-      dataIndex: 'name',
-      key: 'name',
+      dataIndex: 'article_title',
+      key: 'article_title',
     },
     {
       title: '发布时间',
-      dataIndex: 'date',
-      key: 'date',
+      dataIndex: 'updatedAt',
+      key: 'updatedAt',
+      render: (time) => {
+        return <span>{moment(time).format('YYYY-MM-DD')}</span>
+      }
     },
     {
       title: '阅览数',
-      dataIndex: 'looks',
-      key: 'looks',
+      dataIndex: 'count',
+      key: 'count',
     },
     {
       title: '点赞数',
@@ -29,70 +46,66 @@ const CreactionCenter = (props) => {
     },
     {
       title: '评论数',
-      dataIndex: 'comments',
-      key: 'comments',
+      dataIndex: 'comment_count',
+      key: 'comment_count',
     },
     {
       title: '收藏数',
-      dataIndex: 'collets',
-      key: 'collets',
+      dataIndex: 'collects',
+      key: 'collects',
     },
     {
       title: '操作',
-      dataIndex: 'operate',
-      key: 'operate',
+      dataIndex: 'id',
+      key: 'id',
+      render: (id, record) => {
+        return (
+          <div className={styles.tableOperate}>
+            <span onClick={() => onEditArticle(id)}>编辑</span>
+            <span onClick={() => onDeleteArticle(id)}>删除</span>
+          </div>
+        )
+      }
     },
   ];
 
-  const dataSource = [
-    // {
-    //   key: '1',
-    //   name: '胡彦斌',
-    //   age: 32,
-    //   address: '西湖区湖底公园1号',
-    // },
-    // {
-    //   key: '2',
-    //   name: '胡彦祖',
-    //   age: 42,
-    //   address: '西湖区湖底公园1号',
-    // },
-    // {
-    //   key: '3',
-    //   name: '胡彦祖',
-    //   age: 42,
-    //   address: '西湖区湖底公园1号',
-    // },
-    // {
-    //   key: '4',
-    //   name: '胡彦祖',
-    //   age: 42,
-    //   address: '西湖区湖底公园1号',
-    // },
-    // {
-    //   key: '4',
-    //   name: '胡彦祖',
-    //   age: 42,
-    //   address: '西湖区湖底公园1号',
-    // },
-    // {
-    //   key: '4',
-    //   name: '胡彦祖',
-    //   age: 42,
-    //   address: '西湖区湖底公园1号',
-    // },
-    // {
-    //   key: '4',
-    //   name: '胡彦祖',
-    //   age: 42,
-    //   address: '西湖区湖底公园1号',
-    // },
-  ];
+  const getArticle = async (id) => {
+    const params = { id }
+    const res = await getArticleByUserId(params)
+    setData(res.data.data)
+    console.log(res);
+  }
+
+  const getArticleStatistics = async (id) => {
+    const params = { id }
+    const res = await getUserInfo(params)
+    setStatistics(res.data.data)
+    console.log(res);
+
+  }
 
   const pushEditor = () => {
     const w = window.open('_black') //这里是打开新窗口
     let url = '/meditor'
     w.location.href = url //这样就可以跳转了
+  }
+
+  const onDeleteArticle = async (id) => {
+    const params = {
+      id
+    }
+    const res = await deleteArticle(params)
+    if (res.data.status) {
+      message.success('删除成功')
+      getArticle(currentUserId.current)
+    }
+    else {
+      message.error(res.data.errmsg || '请求出错')
+    }
+  }
+
+  const onEditArticle = (id) => {
+    navigate(`/meditor?id=${id}`,)
   }
 
   //菜单列表
@@ -132,35 +145,36 @@ const CreactionCenter = (props) => {
         <ul className={styles.counts}>
           <li>
             <span>文章总数</span>
-            <span>0</span>
+            <span>{statistics.countArticle}</span>
           </li>
           <li>
             <span>文章阅读数</span>
-            <span>0</span>
+            <span>{statistics.countLook}</span>
           </li>
           <li>
             <span>文章点赞数</span>
-            <span>0</span>
+            <span>{statistics.countLike}</span>
           </li>
           <li>
             <span>文章评论数</span>
-            <span>0</span>
+            <span>{statistics.countComment}</span>
           </li>
           <li>
             <span>回复评论数</span>
-            <span>0</span>
+            <span>{statistics.countReply}</span>
           </li>
           <li>
             <span>文章收藏数</span>
-            <span>0</span>
+            <span>{statistics.countCollect}</span>
           </li>
         </ul>
       </section>
       <section className={styles.countsArticle}>
         <h1>最近发布</h1>
         <Table
-          dataSource={dataSource}
+          dataSource={data}
           columns={columns}
+          rowKey={(record) => record.id}
         />
       </section>
     </div>
@@ -170,25 +184,28 @@ const CreactionCenter = (props) => {
     <div className={styles.articleMain}>
       <h1>文章管理</h1>
       <ul className={styles.articleList}>
-        <li>
-          <div>
-            <span className={styles.title}>前端基础知识</span>
-            <div className={styles.info}>
-              <span>2020-08-20 15:20</span>
-              <span>39阅读</span>
-              <span>223点赞</span>
-              <span>290评论</span>
-              <span>0收藏</span>
-            </div>
-          </div>
-          <div className={styles.operate}>
-            <span>编辑</span>
-            <span>删除</span>
-          </div>
-        </li>
+        {data?.length
+          ? data.map(item => (
+            <li key={item.id}>
+              <div>
+                <span className={styles.title}>{item.article_title}</span>
+                <div className={styles.info}>
+                  <span>{moment(item.updatedAt).format('YYYY-MM-DD HH:mm:ss')}</span>
+                  <span>{item.count}阅读</span>
+                  <span>{item.likes}点赞</span>
+                  <span>{item.comment_count}评论</span>
+                  <span>{item.collects}收藏</span>
+                </div>
+              </div>
+              <div className={styles.operate}>
+                <span onClick={() => onEditArticle(item.id)}>编辑</span>
+                <span onClick={() => onDeleteArticle(item.id)}>删除</span>
+              </div>
+            </li>
+          ))
+          : <Empty className={styles.empty} />}
       </ul>
     </div>
-    // <Empty className={styles.empty}/>
   )
 
   return (
