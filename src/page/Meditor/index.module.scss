@@ -1,0 +1,47 @@
+.meditorContainer {
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+    background-color: #fff;
+    height: 80px;
+    border-bottom: 1px solid rgb(229, 230, 235);
+
+    & > input {
+      width: 90%;
+      font-size: 28px;
+      font-weight: bold;
+      outline: none;
+      border: none;
+      background: none;
+    }
+    
+    .releaseBtn {
+      box-sizing: content-box;
+      text-align: center;
+      width: 80px;
+      line-height: 40px;
+      color: #fff;
+      font-size: 20px;
+      border-radius: 3px;
+      height: 40px;
+      background: rgb(26, 115, 232);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  main {
+    height: calc(100vh - 80px);
+  }
+}
+
+.form {
+  width: 700px;
+  .formTitle {
+    font-size: 24px;
+    padding: 15px;
+    border-bottom: 1px solid rgb(229, 230, 235);
+  }
+}

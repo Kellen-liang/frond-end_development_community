@@ -1,0 +1,130 @@
+.editUserInfoContainer {
+  position: relative;
+  height: calc(100vh - 120px);
+  width: 60%;
+  margin: 20px auto;
+
+  .header {
+    width: 100%;
+    padding: 15px;
+    background: #fff;
+    border-radius: 5px;
+    color: rgb(175, 175, 175);
+    font-size: 0;
+    span {
+      // vertical-align: baseline;
+      font-size: 18px;
+      &:hover {
+        color: rgb(235, 39, 30);
+        cursor: pointer;
+      }
+    }
+  }
+  
+  .main {
+    display: flex;
+    width: 100%;
+    margin-top: 15px;
+    min-height: calc(100% - 20px - 40px);
+
+    .mainLift {
+      width: 25%;
+      background: #fff;
+      border-radius: 5px;
+    }
+
+    .mainRight {
+      width: calc(100% - 25% - 25px);
+      margin-left: 25px;
+      background: #fff;
+      border-radius: 5px;
+      padding: 25px 20px;
+      .mainRightTitle {
+        font-weight: bold;
+      }
+      .mainRightContent {
+        margin-top: 10px;
+        padding: 20px;
+
+        .form {
+          .formItem {
+            position: relative;
+            font-size: 18px;
+            display: block;
+            padding: 25px 0;
+            border-top: 1px solid rgb(234, 234, 234);
+            
+            & > span {
+              display: inline-block;
+              width: 100px;
+            }
+            
+            .suffix {
+              position: absolute ;
+              top: 50%;
+              right: 0;
+              transform: translateY(-50%);
+              text-align: center;
+              width: 80px;
+              color: rgb(187, 193, 199);
+            }
+            & > input,
+            & > textarea {
+              width: calc(100% - 100px);
+              padding: 8px 18px;
+              background: #fafafa;
+              color: #1d2129;
+              resize: none;
+              outline: none;
+              box-shadow: none;
+              border: 1px solid #ddd;
+              border-radius: 2px;
+              transition: border .3s;
+              box-sizing: border-box;
+              &::placeholder {
+                color: rgb(187, 193, 199);
+              }
+              &:hover {
+                background: rgb(229, 230, 235);
+              }
+            }
+            & > input[type='text'] {
+              padding-right: 85px;
+            }
+
+            & > textarea {
+              position: relative;
+              vertical-align: text-top;
+              
+            }
+            .textareaSuffix {
+              position: absolute ;
+              width: 80px;
+              color: rgb(187, 193, 199);
+              text-align: center;
+              bottom: 20%;
+              right: 0;
+            }
+
+            .formBtn {
+              margin-left: 100px;
+              width: 150px;
+              height: 50px;
+              font-size: 22px;
+              background: rgb(78 144 231);
+              overflow: none;
+              color: #fff;
+              border: 0;
+              border-radius: 5px;
+              &:hover {
+                cursor: pointer;
+                filter: opacity(0.9);
+              }
+            }
+          }
+        }
+        
+      }
+    }
+  }
+}

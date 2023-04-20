@@ -7,7 +7,7 @@ const routes = [
   },
   {
     path: '/register',
-    element: lazy(() => import('@/page/Login')) 
+    element: lazy(() => import('@/page/Register')) 
   },
   {
     path: '/home',
@@ -26,12 +26,24 @@ const routes = [
     element: lazy(() => import('@/page/CreactionCenter'))
   },
   {
-    path: '/article',
+    path: '/article/:id',
     element: lazy(() => import('@/page/Article'))
   },
   {
+    path: '/meditor',
+    element: lazy(() => import('@/page/Meditor'))
+  },
+  {
+    path: '/userCenter/:id',
+    element: lazy(() => import('@/page/UserCenter')),
+  },
+  {
+    path: '/userCenter/editUserInfo/:id',
+    element: lazy(() => import('@/page/UserCenter/EditUserInfo')),
+  },
+  {
     path: '/',
-    element: lazy(() => import('@/page/Home'))
+    element: lazy(() => import('@/page/Login'))
   }
 ]
 

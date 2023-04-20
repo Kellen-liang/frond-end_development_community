@@ -1,19 +1,44 @@
 .messageContainer {
+  position: relative;
   display: flex;
   justify-content: space-between;
   height: calc(100vh - 120px);
   width: 60%;
   margin: 20px auto;
   
-
   .messageLeft {
-    width: 20%;
+    position: sticky;
+    top: 100px;
+    width: 25%;
     height: 100%;
   }
 
   .messageRight {
-    width: calc(100% - 20% - 20px);
+    position: relative;
+    width: calc(100% - 25% - 20px);
     height: 100%;
-    background: #fff;
+    // background: #fff;
+    overflow-y: auto;
+
+    .messageRightContainer {
+      background-color: #fff;
+      width: 99%;
+      min-height: 100%;
+    }
+  }
+}
+.empty {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.articleCardCustomClass {
+  &:hover {
+    box-shadow: none;
+  }
+  &:hover::before {
+    display: none;
   }
 }

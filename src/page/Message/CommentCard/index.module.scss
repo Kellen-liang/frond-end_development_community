@@ -1,0 +1,112 @@
+$color:rgb(148, 148, 148);
+
+* {
+  box-sizing: border-box;
+}
+h1 {
+  padding: 0;
+  margin: 0;
+}
+.commentCardContainer {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 125px;
+  padding: 20px 10px;
+  &::after {
+    display: block;
+    content: '';
+    width: 96%;
+    border-bottom: 1px solid rgb(240, 240, 240);
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+  }
+    
+  .commentCardContent {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      .userIcon {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-repeat: no-repeat;
+        background-size: 100% ; 
+        background-position: bottom;
+        &:hover {
+          cursor: pointer;
+        }
+      }
+      .commentInfo {
+        width: calc(100% - 50px - 10px);
+        
+        .title {
+          margin: 0 5px;
+          color: rgb(80, 140, 201);
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        & > p {
+          background: rgb(241 241 241 / 51%);
+          border: 1px solid rgb(241, 241, 241);
+          overflow: hidden;
+          margin: 10px 0;
+          padding: 15px;
+          border-radius: 3px;
+        }
+
+        .footer {
+          font-size: 14px;
+          color: $color;
+          div {
+            display: inline-block;
+            margin-left: 10px;
+            &:hover {
+              cursor: pointer;
+            }
+            img {
+              vertical-align: text-top;
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+      }
+  }
+   
+  
+  .commentReplyContainer {
+    display: flex;
+    height: 100px;
+    padding: 20px 0 ;
+    width: 100%;
+    margin-left: 60px;
+
+    .replyContent {
+      background-color: rgb(233, 233, 233);
+      resize:none
+    }
+
+    & > div {
+      width: 100px;
+      height: 100%;
+      font-size: 20px;
+      text-align: center;
+      line-height: 55px;
+      margin-left: 10px;
+      border-radius: 5px;
+      color: aliceblue;
+      background: cadetblue;
+      border: 2px solid cadetblue;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+  
+}

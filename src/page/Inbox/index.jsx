@@ -56,7 +56,6 @@ function Inbox(props) {
     console.log(record);
   }
   const handleKeyDown = (e) => {
-    if(e.target.value = '') return
 
     //触发Shift + Enter事件
     if (e.shiftKey && e.keyCode === 13) {
@@ -107,7 +106,7 @@ function Inbox(props) {
           className={`${styles.inboxChatInput} customScorllType`}
           onKeyDown={handleKeyDown}
           value={chatInputContent}
-          onChange={(e) => setChatInputContent(e.target.value)}
+          onChange={(e) => setChatInputContent(e.target.value.trim())}
           ></textarea>
       </section>
     </div>

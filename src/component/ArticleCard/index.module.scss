@@ -5,30 +5,14 @@ $font-hover-color: rgb(209, 51, 42);
   position: relative;
   width: 95%; 
   height: 200px;
-  margin-bottom: 15px;
   display: flex;
   box-sizing:border-box;
   padding: 10px 20px;
   background-color: #fff;
-  box-shadow: 2px 2px #ddd;
-  &:hover::before {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(-110%, -50%);
-    display: block;
-    content: '';
-    background: url(/src/assets/svg/手指示.svg);
-    background-size: contain;
-    background-repeat: no-repeat;
-    width: 50px;
-    height: 50px;
-  }
   &:hover {
     cursor: pointer;
-    box-shadow: 2px 4px 6px #00000082;
   }
-  
+
   .articleItemLeft {
     display: flex;
     flex-direction: column;
@@ -110,4 +94,41 @@ $font-hover-color: rgb(209, 51, 42);
     }
   }
   
+}
+
+.isHaveHoverShadow {
+  margin-bottom: 15px;
+  box-shadow: 2px 2px #ddd;
+  &:hover::before {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-110%, -50%);
+    display: block;
+    content: '';
+    background: url(/src/assets/svg/手指示.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+  }
+  &:hover {
+    box-shadow: 2px 4px 6px #00000082;
+  }
+}
+
+.isNotHaveHoverShadow {
+  &:hover {
+    background: #e4e4e440;
+  }
+  &::after {
+    display: block;
+    content: '';
+    width: 96%;
+    border-bottom: 1px solid rgb(240, 240, 240);
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%);
+  }
 }

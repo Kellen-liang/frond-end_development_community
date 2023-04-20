@@ -1,57 +1,71 @@
-import React from "react";
-import { useForm } from "react-hook-form";
+import React, { useState, useRef, useContext } from "react";
+import { message } from "antd";
 import styles from './index.module.scss'
+import { useNavigate } from 'react-router-dom'
+import { AuthContext } from '@/context/authContext'
 
 function Login() {
-  // create a form instance
-  const { register, handleSubmit, formState } = useForm();
+  const [formError, setFormError] = useState('')
+  const [formData, setFormData] = useState({ username: '', password: '' });
+  const navigate = useNavigate()
+  const { login } = useContext(AuthContext)
 
-  // handle form submission
-  const onSubmit = (data) => {
-    console.log(data);
-    // do something with the data, such as sending it to an API
+  const handFormChange = (event) => {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
   };
 
 
-  // get the errors object from form state
-  const { errors } = formState;
+  const handleSubmit = (event, type) => {
+    event.preventDefault();
+    const flag = validate(formData)
+    flag && sendData(formData)
+  };
+
+
+  const sendData = async (data) => {
+    const { status, errmsg } = await login(data)
+    if(status === 1) {
+      message.success('登录成功')
+      navigate('/home')
+    } else {
+      message.error(errmsg)
+    }
+  }
+
+
+  //表单校验
+  const validate = (formData) => {
+    let isValid = true;
+    setFormError('')
+    if (formData?.username?.length < 3) {
+      setFormError((pre) => '用户名称不能小于3个字符\n')
+      isValid = false;
+    }
+    if (formData?.password?.length < 8) {
+      setFormError((pre) => pre + '用户密码不能小于8个字符\n')
+      isValid = false;
+    }
+    return isValid;
+  }
 
   return (
     <div className={styles.formContainer}>
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.loginForm}>
-        <div className={`${styles.formDefault} `}>
-          <label htmlFor="username">UserName</label>
-          <input
-            id="username"
-            type="text"
-            {...register("username", {
-              required: "Username is required",
-              minLength: {
-                value: 5,
-                message: '最少三个字符'
-              }
-            })}
-          />
+      <form onSubmit={handleSubmit} className={styles.loginForm}>
+        <label key='username'>
+          <span>用户名称:</span>
+          <input type="text" name='username' onChange={handFormChange} />
+        </label>
+        <label>
+          <span>用户密码:</span>
+          <input type="password" name='password' onChange={handFormChange} />
+        </label>
+        <div className={styles.formFooter}>
+          <button type="submit" className={styles.formSubmit}>登录</button>
+          <span onClick={() => navigate('/register')}>切换注册</span>
         </div>
-        <div className={`${styles.formDefault} `}>
-          <label htmlFor="password">Password</label>
-          <input
-            id="password"
-            type="password"
-            {...register("password", {
-              required: "Password is required",
-              minLength: {
-                value: 8,
-                message: "Password must be at least 8 characters long",
-              },
-            })}
-          />
-          {/* <div className={styles.popover} style={{display: errors.password ? 'block' : 'none', top: 100}}>{errors.password?.message}</div> */}
-        </div>
-        <button className={styles.formSubmit} type="submit">Login</button>
-        <div className={styles.popover} style={{display: (errors.username || errors.password) ? 'block' : 'none'}}>{errors.username?.message }<br/>{errors.password?.message || null}</div>
       </form>
-      
+      <div className={styles.errorInfo} style={{ display: formError ? 'block' : 'none' }}>{formError}</div>
     </div>
   );
 }

@@ -19,11 +19,15 @@ a{
     display: flex;
     justify-content: space-between;
     .navLeftBar {
-      text-align: center;
-      line-height: 45px;
+      display: flex;
+      align-items: center;
       width: 20%;
       height: 45px;
-      background-color: aliceblue;
+      img {
+        line-height: 45px;
+        width: 100%;
+        height: 70%;
+      }
     }
     .navRightBar {
       display: flex;
@@ -59,37 +63,40 @@ a{
             border: 2px solid #80808085;
             border-radius: 50%;
             box-shadow: 0 0 10px 0 inset;
+            &:hover {
+              cursor: pointer;
+            }
           }
         }
       }
-      .search {
-        display: flex;
-        align-items: center;
-        background-color: rgb(233, 233, 233);
-        &:focus-within {
-          box-shadow: inset 0 0 4px 0;
-          border: 2px solid black;
-        }
-        input {
-          width: 85%;
-          height: 70%;
-          padding-left: 20px;
-          background: none;
-          outline: none;
-          border: none;
-        }
-        .searchBtn {
-          display: block;
-          width: 15%;
-          height: 70%;
-          background-image: url('/src/assets/img/search-icon.png');
-          background-size: 50%;
-          background-repeat: no-repeat;
-          background-position: center;
-          cursor: pointer;
-        }
+      // .search {
+      //   display: flex;
+      //   align-items: center;
+      //   background-color: rgb(233, 233, 233);
+      //   &:focus-within {
+      //     box-shadow: inset 0 0 4px 0;
+      //     border: 2px solid black;
+      //   }
+      //   input {
+      //     width: 85%;
+      //     height: 70%;
+      //     padding-left: 20px;
+      //     background: none;
+      //     outline: none;
+      //     border: none;
+      //   }
+      //   .searchBtn {
+      //     display: block;
+      //     width: 15%;
+      //     height: 70%;
+      //     background-image: url('/src/assets/img/search-icon.png');
+      //     background-size: 50%;
+      //     background-repeat: no-repeat;
+      //     background-position: center;
+      //     cursor: pointer;
+      //   }
         
-      }
+      // }
     }
   }  
 }
@@ -98,4 +105,61 @@ a{
 .router-link-active {
   text-decoration: none;//去除默认样式
   color: orange;//高亮的颜色
+}
+
+
+.userInfoPopover {
+  padding: 10px 15px;  
+  width: 250px;
+  height: 200px;
+  .userInfoPopoverHeader {
+    display: flex;justify-content: center;
+    align-items: center;
+    img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+    }
+    span {
+      margin-left: 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+  }
+
+  .userInfoPopoverNav {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    border-bottom: 1px solid rgb(240, 240, 240);
+    font-size: 15px;
+    color: rgb(171, 176, 186);
+    div {
+      text-align: center;
+      &:hover {
+        cursor: pointer;
+      }
+      &> span:first-child  {
+        color: black;
+        font-size: 24px;
+      }
+      span{
+        display: block;
+        pointer-events: none;
+      }
+    }
+    
+  }
+
+  .userInfoPopoverFooter {
+    position: relative;
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    div {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
