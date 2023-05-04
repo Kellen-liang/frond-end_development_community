@@ -31,7 +31,7 @@ function Login() {
   const sendData = async (data) => {
     const { status, msg } = await login(data)
     if(status === 1) {
-      message.success(msg)
+      message.success('登录成功')
       navigate('/')
     } else {
       message.error(msg)
