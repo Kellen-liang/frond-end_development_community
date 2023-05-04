@@ -29,16 +29,17 @@ function Login() {
 
 
   const sendData = async (data) => {
-    const { status, msg } = await login(data)
-    if(status === 1) {
-      message.success(msg)
-      navigate('/')
-    } else {
-      message.error(msg)
-    }
-    console.log('msg', msg);
+    // const { status, msg } = await login(data)
+    // if(status === 1) {
+    //   message.success('登录成功')
+    //   navigate('/')
+    // } else {
+    //   message.error(msg)
+    // }
+    // console.log('msg', msg);
 
-    console.log('currentUser', currentUser);
+    // console.log('currentUser', currentUser);
+    navigate('/home')
   }
 
 

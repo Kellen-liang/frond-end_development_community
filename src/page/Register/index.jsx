@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import styles from './index.module.scss'
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
+import { message } from "antd";
 
 
 function Register() {
@@ -23,7 +24,13 @@ function Register() {
   };
 
   const sendData = async (data) => {
-    const res = await axios.post('http://localhost:3002/api/user/register', data)
+    // const res = await axios.post('http://localhost:3002/api/user/register', data)
+    // if (res.data.status) {
+    //   message.success('注册成功')
+    // } else {
+    //   message.error(res.data.msg)
+    // }
+    navigate('/login')
   }
 
 
