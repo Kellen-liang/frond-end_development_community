@@ -6,7 +6,7 @@ import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import axios from 'axios'
 import { AuthContextProvider } from './context/authContext.jsx'
-axios.defaults.withCredentials = true
+// axios.defaults.withCredentials = true
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

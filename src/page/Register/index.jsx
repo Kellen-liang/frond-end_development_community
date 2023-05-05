@@ -24,12 +24,13 @@ function Register() {
   };
 
   const sendData = async (data) => {
-    const res = await axios.post('http://localhost:3002/api/user/register', data)
-    if (res.data.status) {
-      message.success('注册成功')
-    } else {
-      message.error(res.data.msg)
-    }
+    // const res = await axios.post('http://localhost:3002/api/user/register', data)
+    // if (res.data.status) {
+    //   message.success('注册成功')
+    // } else {
+    //   message.error(res.data.msg)
+    // }
+    navigate('/login')
   }
 
 
