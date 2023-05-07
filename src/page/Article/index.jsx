@@ -29,7 +29,7 @@ function Article(props) {
   const [data, setData] = useState({})
   const [commentData, setCommentData] = useState([])
   const [userInfo, setUserInfo] = useState({})
-
+  const [commentValue ,setCommentValue] = useState('')
 
   const { currentUser } = useContext(AuthContext)
   const params = useParams()
@@ -185,6 +185,7 @@ function Article(props) {
       }
       const res = await createComment(data)
       if (res.data.status) {
+        setCommentValue('')
         getComment(params.id)
       }
       else {
@@ -292,7 +293,9 @@ function Article(props) {
                 cols="30" 
                 rows="3" 
                 placeholder="输入评论，Shift + Enter键发送"
-                onKeyDown={createNewComment}
+                value={commentValue}
+                onChange={(e) => setCommentValue(e.target.value.trim())}
+                onKeyDown={(e) => createNewComment(e)}
               ></textarea>
             </div>
           </div>
