@@ -105,6 +105,9 @@ function MainArticle({ width, style, onClick}) {
     }
   }
 
+  console.log('url',import.meta.url);
+  console.log(resource('./img/ARTICLE.png'));
+
   return (
     <div className={styles.mainArticle} style={{width, ...style}}>
       <h1 className={styles.articleHeadline}>

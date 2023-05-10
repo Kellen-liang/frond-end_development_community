@@ -37,6 +37,7 @@ const Index = ({ width, style }) => {
       text: '云计算'
     }
   ]
+
   return (
     <div className={styles.mainArticleContent} style={{ width, ...style }}>
       <section className={styles.articleCategory}>
