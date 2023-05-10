@@ -43,6 +43,3 @@ export const TAG = [
   "BDD"
 ]
 
-export const resource = url => {
-  return new URL(url, import.meta.url).href
-};

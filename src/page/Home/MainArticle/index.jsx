@@ -4,7 +4,7 @@ import ArticleCard from "../../../component/ArticleCard";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { cloneDeep } from 'lodash';
-import { resource } from "@/utils/common";
+import resource from "@/assets/resource";
 
 function MainArticle({ width, style, onClick}) {
 
@@ -109,8 +109,7 @@ function MainArticle({ width, style, onClick}) {
     <div className={styles.mainArticle} style={{width, ...style}}>
       <h1 className={styles.articleHeadline}>
         <span>文章</span>
-        <img src={resource('/src/assets/img/ARTICLE.png')} alt="" />
-        {/* <img src="/src/assets/img/ARTICLE.png" alt="" /> */}
+        <img src={resource('./img/ARTICLE.png')} alt="" />
       </h1>
       <ul className={styles.articleList}>
         {
