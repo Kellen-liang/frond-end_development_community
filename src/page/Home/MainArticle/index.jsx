@@ -109,7 +109,7 @@ function MainArticle({ width, style, onClick}) {
     <div className={styles.mainArticle} style={{width, ...style}}>
       <h1 className={styles.articleHeadline}>
         <span>文章</span>
-        <img src={resource('../../../assets/img/ARTICLE.png')} alt="" />
+        <img src={resource('/src/assets/img/ARTICLE.png')} alt="" />
         {/* <img src="/src/assets/img/ARTICLE.png" alt="" /> */}
       </h1>
       <ul className={styles.articleList}>
