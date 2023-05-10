@@ -5,7 +5,7 @@ import { EditOutlined, PlusOutlined, MailOutlined } from '@ant-design/icons'
 import { useLocation, useNavigate } from "react-router-dom"
 import ArticleCard from "@/component/ArticleCard";
 import SubscribeCard from "./SubscribeCard";
- 
+import resource from "@/assets/resource";
 
 function UserCenter(props) {
   const { state } = useLocation()
@@ -21,9 +21,9 @@ function UserCenter(props) {
     {
       'id': '001',
       'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
+      'user-icon': resource('./img/Icon.png'),
       'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
+      'cover': resource('./img/Icon.png'),
       'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
       'tag': ['前端', 'JS'],
       'article': '文章正文',
@@ -38,9 +38,9 @@ function UserCenter(props) {
     {
       'id': '002',
       'author': 'Kellen',
-      'user-icon': '/src/assets/img/Icon.png',
+      'user-icon': resource('./img/Icon.png'),
       'title': '如何优雅地写出一个组件',
-      'cover': '/src/assets/img/Icon.png',
+      'cover': resource('./img/Icon.png'),
       'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
       'tag': ['前端', 'JS'],
       'article': '文章正文',
@@ -59,19 +59,19 @@ function UserCenter(props) {
     {
       user_id: '001',
       username: 'Kellen',
-      user_icon: '/src/assets/img/Icon.png',
+      user_icon: resource('./img/Icon.png'),
       is_subscribe: 1
     },
     {
       user_id: '002',
       username: 'Coco',
-      user_icon: '/src/assets/img/Icon.png',
+      user_icon: resource('./img/Icon.png'),
       is_subscribe: 1
     },
     {
       user_id: '003',
       username: 'Mike',
-      user_icon: '/src/assets/img/Icon.png',
+      user_icon: resource('./img/Icon.png'),
       is_subscribe: 1
     },
   ]
@@ -81,19 +81,19 @@ function UserCenter(props) {
     {
       user_id: '004',
       username: 'Kellen',
-      user_icon: '/src/assets/img/Icon.png',
+      user_icon: resource('./img/Icon.png'),
       is_subscribe: 0
     },
     {
       user_id: '005',
       username: 'Coco',
-      user_icon: '/src/assets/img/Icon.png',
+      user_icon: resource('./img/Icon.png'),
       is_subscribe: 1
     },
     {
       user_id: '006',
       username: 'Mike',
-      user_icon: '/src/assets/img/Icon.png',
+      user_icon: resource('./img/Icon.png'),
       is_subscribe: 0
     },
   ]
@@ -201,7 +201,7 @@ function UserCenter(props) {
   const isMimeInfoJSX = () => (
     <>
       <div className={styles.userCard}>
-        <section className={styles.userCardLeft}><img src="/src/assets/svg/带刀剑士.svg" alt="" /></section>
+        <section className={styles.userCardLeft}><img src={resource("./svg/带刀剑士.svg")} alt="" /></section>
         <section className={styles.userCardCenter}>
           <h2>Kellen</h2>
           <div className={styles.userInfo}>+ 添加从事的职业</div>
@@ -217,7 +217,7 @@ function UserCenter(props) {
   const notMimeInfoJSX = () => (
     <>
       <div className={styles.userCard}>
-        <section className={styles.userCardLeft}><img src="/src/assets/svg/带刀剑士.svg" alt="" /></section>
+        <section className={styles.userCardLeft}><img src={resource("./svg/带刀剑士.svg")} alt="" /></section>
         <section className={styles.userCardCenter}>
           <h2>Kellen</h2>
           <div>+ 添加从事的职业</div>
@@ -341,9 +341,9 @@ function UserCenter(props) {
         <div className={styles.successCard}>
           <h2>个人成就</h2>
           <ul>
-            <li><img src="/src/assets/img/已点赞.png" alt="" /><span>文章被点赞 3</span></li>
-            <li><img src="/src/assets/img/已查看.png" alt="" /><span>文章被阅读 512</span></li>
-            <li><img src="/src/assets/img/已评论.png" alt="" /><span>文章被评论 124</span></li>
+            <li><img src={resource("./img/已点赞.png")} alt="" /><span>文章被点赞 3</span></li>
+            <li><img src={resource("./img/已查看.png")} alt="" /><span>文章被阅读 512</span></li>
+            <li><img src={resource("./img/已评论.png")} alt="" /><span>文章被评论 124</span></li>
           </ul>
         </div>
         <div className={styles.countCard}>

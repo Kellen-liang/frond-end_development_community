@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from './index.module.scss'
+import resource from "@/assets/resource";
 import { Input } from 'antd'
 const { TextArea } = Input;
 
@@ -24,7 +25,7 @@ function CommentCard(props) {
   const {
     record,
     style,
-    userIcon = '/src/assets/svg/带刀剑士.svg',
+    userIcon = resource('./svg/带刀剑士.svg'),
     username,
     content,
     addTime,
@@ -81,7 +82,7 @@ function CommentCard(props) {
             <div
               onClick={onShowReplyContent}
               style={{ color: isShowReply ? 'rgb(205, 170, 37) ' : 'rgb(148, 148, 148)' }}
-            ><img src={isShowReply ? '/src/assets/img/已评论.png' : '/src/assets/img/未评论.png'} alt="" />{isShowReply ? '取消回复' : '回复'} </div>
+            ><img src={isShowReply ? resource('./img/已评论.png') : resource('./img/未评论.png')} alt="" />{isShowReply ? '取消回复' : '回复'} </div>
           </div>
         </div>
       </div>

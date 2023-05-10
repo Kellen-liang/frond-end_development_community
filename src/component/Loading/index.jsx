@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./index.module.scss"
+import resource from "@/assets/resource";
 
 /**
  * @param {*} param0 
@@ -8,7 +9,7 @@ import styles from "./index.module.scss"
  * @returns {JSX.Element}
  */
 function Loading({
-  icon = '/src/assets/img/loading.png',
+  icon = resource('./img/loading.png'),
   style
 }) {
 

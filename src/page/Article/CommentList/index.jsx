@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import styles from "./index.module.scss"
+import resource from "@/assets/resource";
 
 function Comment(props) {
   const { commentId, username, userIcon, content, addTime, replyLate, canDel, onReply, onGetuserInfo, onDel } = props
@@ -55,7 +56,7 @@ function Comment(props) {
             onClick={() => setIsShowReply(!isShowReply)}
             style={{ color: isShowReply ? 'rgb(205, 170, 37) ' : 'rgb(148, 148, 148)' }}
           >
-            <img src={isShowReply ? '/src/assets/img/已评论.png' : '/src/assets/img/未评论.png'} alt="" /> {isShowReply ? '取消回复' : '回复'}
+            <img src={isShowReply ? resource('./img/已评论.png') : resource('./img/未评论.png')} alt="" /> {isShowReply ? '取消回复' : '回复'}
           </div>
           <div
             style={{ display: canDel ? 'block' : 'none' }}
@@ -63,7 +64,7 @@ function Comment(props) {
             onMouseLeave={() => setIsHovered(false)}
             onClick={_onDel}
           >
-            <img src={isHovered ? '/src/assets/svg/删除.svg' : '/src/assets/svg/默认删除.svg'} alt="" />删除</div>
+            <img src={isHovered ? resource('./svg/删除.svg' ) : resource('./svg/默认删除.svg')} alt="" />删除</div>
         </div>
       </div>
       <form

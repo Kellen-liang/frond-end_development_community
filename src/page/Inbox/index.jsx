@@ -5,6 +5,7 @@ import { cloneDeep } from "lodash";
 import styles from "./index.module.scss"
 import UserCardList from "./UserCardList";
 import ChatPopover from "./ChatPopover";
+import resource from "@/assets/resource";
 
 function Inbox(props) {
 
@@ -12,39 +13,39 @@ function Inbox(props) {
   const [userList, setUserList] = useState([
     {
       userId:'001',
-      userIcon: '/src/assets/svg/带刀剑士.svg',
+      userIcon: resource('./svg/带刀剑士.svg'),
       userName: 'Kellen',
       userMessage: '啊看世界杯的asdasd按asf属地卡'
     },
     {
       userId:'002',
-      userIcon: '/src/assets/svg/带刀剑士.svg',
+      userIcon: resource('./svg/带刀剑士.svg'),
       userName: 'Kellen',
       userMessage: '啊看世界杯的asdasd按asf属地卡'
     },
     {
       userId:'003',
-      userIcon: '/src/assets/svg/带刀剑士.svg',
+      userIcon: resource('./svg/带刀剑士.svg'),
       userName: 'Kellen',
       userMessage: '啊看世界杯的asdasd按asf属地卡'
     },
     {
       userId:'004',
-      userIcon: '/src/assets/svg/带刀剑士.svg',
+      userIcon: resource('./svg/带刀剑士.svg'),
       userName: 'Kellen',
       userMessage: '啊看世界杯的asdasd按asf属地卡'
     },
     {
       userId:'005',
-      userIcon: '/src/assets/svg/带刀剑士.svg',
+      userIcon: resource('./svg/带刀剑士.svg'),
       userName: 'Kellen',
       userMessage: '啊看世界杯的asdasd按asf属地卡'
     },
   ])
 
   const [chatInfoLIst, setchatInfoLIst] = useState([
-    {username: 'Kellen', userIcon: '/src/assets/svg/带刀剑士.svg', chatCentent: '你好呀', addtime: '2023-3-25', isMine: true},
-    {username: 'CoCo', userIcon: '/src/assets/svg/带刀剑士.svg', chatCentent: '你好呀', addtime: '2023-3-25', isMine: false}
+    {username: 'Kellen', userIcon: resource('./svg/带刀剑士.svg'), chatCentent: '你好呀', addtime: '2023-3-25', isMine: true},
+    {username: 'CoCo', userIcon: resource('./svg/带刀剑士.svg'), chatCentent: '你好呀', addtime: '2023-3-25', isMine: false}
   ])
   
   const onClick = (index, record) =>{
@@ -64,7 +65,7 @@ function Inbox(props) {
       if (!value.length) return
       const templist = cloneDeep(chatInfoLIst)
       templist.push(
-        {username: 'Kellen', userIcon: '/src/assets/svg/带刀剑士.svg', chatCentent: value, addtime: '2023-3-25', isMine: true},
+        {username: 'Kellen', userIcon: resource('./svg/带刀剑士.svg'), chatCentent: value, addtime: '2023-3-25', isMine: true},
       )
       setchatInfoLIst(templist)
       setChatInputContent('')
@@ -97,7 +98,7 @@ function Inbox(props) {
                 onClick={onClickGetName}
               />
           ) : (
-            <Empty className='empty' description={'人影都没一个'} image={'/src/assets/img/喵喵.jpg'} imageStyle={{width:200, height:240}}/>
+            <Empty className='empty' description={'人影都没一个'} image={resource('./img/喵喵.jpg')} imageStyle={{width:200, height:240}}/>
           )}
           
         </div>
