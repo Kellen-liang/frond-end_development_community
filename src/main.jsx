@@ -11,9 +11,9 @@ import { AuthContextProvider } from './context/authContext.jsx'
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
     <AuthContextProvider>
-      <HashRouter>
+      <BrowserRouter>
         <App />
-      </HashRouter>
+      </BrowserRouter>
     </AuthContextProvider>
   // </React.StrictMode>,
 )
