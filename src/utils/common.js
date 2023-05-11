@@ -44,6 +44,6 @@ export const TAG = [
 ]
 
 
-export const resource2 = url => {
+export const resource = url => {
   return new URL(url, import.meta.url).href
 };

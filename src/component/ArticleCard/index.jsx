@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.scss";
-import resource from "/public/resource";
+import { resource } from "@/utils/common";
 /**
  * 
  * @param {object} props
@@ -28,11 +28,11 @@ import resource from "/public/resource";
  */
 function ArticleCard(props) {
   const index = props.index
-  const cover = props.cover ||  resource('./img/Icon.png')
+  const cover = props.cover ||  resource('/img/Icon.png')
   const record = props.record
 
   const header = {
-    userIcon: resource('./img/Icon.png'),
+    userIcon: resource('/img/Icon.png'),
     userName: 'Kellen',
     addTime: '',
     tags: [],
@@ -118,9 +118,9 @@ function ArticleCard(props) {
           className={styles.userOperate}
           onClick={(e) => _onOperateClick(e)}
         >
-          <li><img src={resource('./img/未查看.png')} alt="" /><span>{operate.count}</span></li>
-          <li data-type='likes' ><img src={resource(`./img/${operate.isLike ? '已点赞' : '未点赞'}.png`)} alt="" /><span>{operate.likes}</span></li>
-          <li data-type='comments' ><img src={resource(`./img/${operate.isComment ? '已评论' : '未评论'}.png`)} alt="" /><span>{operate.comments}</span></li>
+          <li><img src={resource('/img/未查看.png')} alt="" /><span>{operate.count}</span></li>
+          <li data-type='likes' ><img src={resource(`/img/${operate.isLike ? '已点赞' : '未点赞'}.png`)} alt="" /><span>{operate.likes}</span></li>
+          <li data-type='comments' ><img src={resource(`/img/${operate.isComment ? '已评论' : '未评论'}.png`)} alt="" /><span>{operate.comments}</span></li>
         </ul>
       </section>
       <section className={styles.articleItemRight}><img src={cover} alt="" /></section>

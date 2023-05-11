@@ -1,9 +1,9 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Popover } from "antd"
-import resource from "@/assets/resource";
+// import resource from "@/assets/resource";
 import styles from "./index.module.scss"
-import { resource2 } from "@/utils/common";
+import { resource } from "@/utils/common";
 
 function HeaderNav(props) {
   const navigate = useNavigate()
@@ -34,7 +34,7 @@ function HeaderNav(props) {
     <div className={styles.userInfoPopover} onClick={onPushUserCenter}>
       <section className={styles.userInfoPopoverHeader}>
         {/* <img src={resource('./img/Icon.png')} alt="" /> */}
-        <img src={resource2('/img/Icon.png')} alt="" />
+        <img src={resource('/img/Icon.png')} alt="" />
         <span>Kellen</span>
       </section>
       <section className={styles.userInfoPopoverNav}>
@@ -53,7 +53,7 @@ function HeaderNav(props) {
     <header className={styles.headerContainer}>
       <nav className={styles.headerNav}>
         <div className={styles.navLeftBar}>
-          <Link to={'/home'}><img src={resource('./img/标题.png')} alt=""></img></Link>
+          <Link to={'/home'}><img src={resource('/img/标题.png')} alt=""></img></Link>
         </div>
         <ul className={styles.navRightBar}>
           <li className={styles.search}><input type="text" placeholder="查找"/><div className={styles.searchBtn}></div></li>
@@ -68,7 +68,7 @@ function HeaderNav(props) {
               arrow={false}
             >
               {/* <img src={resource('./img/Icon.png')} alt=""></img> */}
-              <img src={resource('/public/img/Icon.png')} alt=""></img>
+              <img src={resource('/img/Icon.png')} alt=""></img>
             </Popover>
           </li>
         </ul>
