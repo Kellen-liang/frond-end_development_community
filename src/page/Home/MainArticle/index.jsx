@@ -4,7 +4,7 @@ import ArticleCard from "../../../component/ArticleCard";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { cloneDeep } from 'lodash';
-import resource from "@/assets/resource";
+import { resource } from "@/utils/common";
 
 function MainArticle({ width, style, onClick}) {
 
@@ -14,9 +14,9 @@ function MainArticle({ width, style, onClick}) {
     {
       'id': '001',
       'author': 'Kellen',
-      'user-icon': resource('./img/Icon.png'),
+      'user-icon': resource('/img/Icon.png'),
       'title': '如何优雅地写出一个组件',
-      'cover': resource('./img/Icon.png'),
+      'cover': resource('/img/Icon.png'),
       'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
       'tag': ['前端', 'JS'],
       'article': '文章正文',
@@ -31,9 +31,9 @@ function MainArticle({ width, style, onClick}) {
     {
       'id': '002',
       'author': 'Kellen',
-      'user-icon': resource('./img/Icon.png'),
+      'user-icon': resource('/img/Icon.png'),
       'title': '如何优雅地写出一个组件',
-      'cover': resource('./img/Icon.png'),
+      'cover': resource('/img/Icon.png'),
       'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
       'tag': ['前端', 'JS'],
       'article': '文章正文',
@@ -48,9 +48,9 @@ function MainArticle({ width, style, onClick}) {
     {
       'id': '003',
       'author': 'Kellen',
-      'user-icon': resource('./img/Icon.png'),
+      'user-icon': resource('/img/Icon.png'),
       'title': '如何优雅地写出一个组件',
-      'cover': resource('./img/Icon.png'),
+      'cover': resource('/img/Icon.png'),
       'intro': '这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介,这是一段很长很长的简介',
       'tag': ['前端', 'JS'],
       'article': '文章正文',
@@ -106,13 +106,13 @@ function MainArticle({ width, style, onClick}) {
   }
 
   console.log('url',import.meta.url);
-  console.log(resource('./img/ARTICLE.png'));
+  console.log(resource('/img/ARTICLE.png'));
 
   return (
     <div className={styles.mainArticle} style={{width, ...style}}>
       <h1 className={styles.articleHeadline}>
         <span>文章</span>
-        <img src={resource('./img/ARTICLE.png')} alt="" />
+        <img src={resource('/img/ARTICLE.png')} alt="" />
       </h1>
       <ul className={styles.articleList}>
         {

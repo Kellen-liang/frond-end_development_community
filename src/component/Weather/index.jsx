@@ -3,7 +3,7 @@ import axios from "axios";
 import styles from "./index.module.scss"
 import { weatherList } from "./weatherList";
 import { useState, useEffect } from "react";
-import resource from "@/assets/resource";
+import { resource } from "@/utils/common";
 
 function Weather({width, style}) {
   const [time, setTime] = useState(new Date().toLocaleTimeString())
@@ -52,12 +52,12 @@ function Weather({width, style}) {
         <span>{weatherInfo.week}</span>
       </div>
       <ul className={styles.weatherInfo}>
-        <li><img src={resource('./weather/天气属性/地址-on.svg')} alt="" /><span>{weatherInfo.city}</span></li>
-        <li><img src={resource('./weather/天气属性/温度计.svg')} alt="" /><span>{weatherInfo.tem}</span></li>
+        <li><img src={resource('/weather/天气属性/地址-on.svg')} alt="" /><span>{weatherInfo.city}</span></li>
+        <li><img src={resource('/weather/天气属性/温度计.svg')} alt="" /><span>{weatherInfo.tem}</span></li>
         <li><img src={weatherList[weatherInfo.wea_img] || weatherList['qing']} alt="" /><span>{weatherInfo.wea}</span></li>
-        <li><img src={resource('./weather/天气属性/风向.svg')} alt="" /><span>{weatherInfo.win}</span></li>
-        <li><img src={resource('./weather/天气属性/湿度.svg')} alt="" /><span>{weatherInfo.humidity}</span></li>
-        <li><img src={resource('./weather/天气属性/大气.svg')} alt="" /><span>{weatherInfo.pressure}</span></li>
+        <li><img src={resource('/weather/天气属性/风向.svg')} alt="" /><span>{weatherInfo.win}</span></li>
+        <li><img src={resource('/weather/天气属性/湿度.svg')} alt="" /><span>{weatherInfo.humidity}</span></li>
+        <li><img src={resource('/weather/天气属性/大气.svg')} alt="" /><span>{weatherInfo.pressure}</span></li>
       </ul>
     </div>
   )

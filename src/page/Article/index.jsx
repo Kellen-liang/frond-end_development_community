@@ -4,7 +4,7 @@ import Information from "@/component/Information";
 import CommentList from "./CommentList";
 import { useState, useLayoutEffect } from "react";
 import MEDitor from '@uiw/react-md-editor';
-import resource from "@/assets/resource";
+import { resource } from "@/utils/common";
 import { Button } from 'antd'
 
 
@@ -18,8 +18,7 @@ function Article(props) {
   const [isShow, setIsShow] = useState(true)
   const [markdown, setMarkdown] = useState('');
   useLayoutEffect(() => {
-    // fetch('/src/assets/md/js基础知识.md')
-    fetch(resource('./md/js基础知识.md'))
+    fetch(resource('/md/js基础知识.md'))
       .then(response => response.text())
       .then(text => {
         // console.log(text);
@@ -35,7 +34,7 @@ function Article(props) {
       article_title: '如有优雅的写出一个组件', //文章标题
       user_id: 'user_id-1', //评论（回复）创建者id
       username: 'Kellen', //评论（回复）创建者名
-      userIcon: resource('./svg/带刀剑士.svg'), //评论（回复）创建者头像
+      userIcon: resource('/svg/带刀剑士.svg'), //评论（回复）创建者头像
       content: '这是一段评论 ', //评论、回复内容
       addTime: '2020-03-91',  //添加时间
       canDel: 1, //是否可进行删除操作
@@ -47,7 +46,7 @@ function Article(props) {
           reply_late: 'Kellen', //回复对象名
           user_id: 'user_id-2', //评论（回复）创建者id
           username: 'Coco', //评论（回复）创建者名
-          userIcon: resource('./svg/带刀剑士.svg'), //评论（回复）创建者头像
+          userIcon: resource('/svg/带刀剑士.svg'), //评论（回复）创建者头像
           content: '回复Kellen ', //评论、回复内容
           addTime: '2020-03-91',  //添加时间
           canDel: 1
@@ -59,7 +58,7 @@ function Article(props) {
           reply_late_id: 'user_id-2',  //回复对象id
           user_id: 'user_id-3', //评论（回复）创建者id
           username: 'Mike', //评论（回复）创建者名
-          userIcon: resource('./svg/带刀剑士.svg'), //评论（回复）创建者头像
+          userIcon: resource('/svg/带刀剑士.svg'), //评论（回复）创建者头像
           content: '这是一段评论 ', //评论、回复内容
           addTime: '2020-03-91',  //添加时间
           canDel: 1
@@ -86,7 +85,7 @@ function Article(props) {
         <section className={styles.articleContent}>
           <div className={styles.title}>标题</div>
           <div className={styles.userInfo}>
-            <img className={styles.userInfoLeft} src={resource('./svg/带刀剑士.svg')} alt="" />
+            <img className={styles.userInfoLeft} src={resource('/svg/带刀剑士.svg')} alt="" />
             <div className={styles.userInfoRight}>
               <span>Kellen</span>
               <span className={styles.date}>2023-04-03 · 阅读2040</span>
@@ -101,7 +100,7 @@ function Article(props) {
           <div className={styles.articleCommentTop}>
             <h1>评论</h1>
             <div className={styles.articleCommentUser}>
-              <img src={resource('./img/白梅.png')} alt="" />
+              <img src={resource('/img/白梅.png')} alt="" />
               <textarea name="" id="" cols="30" rows="3" placeholder="输入评论，Shift + Enter键发送"></textarea>
             </div>
           </div>
@@ -126,11 +125,11 @@ function Article(props) {
         </section>
       </div>
       <ul className={styles.articleBar}>
-        <li onClick={() => setIsLike(!isLike)}><img src={isLike ? resource('./img/已点赞.png') : resource('./img/未点赞.png')} alt="" /></li>
-        <li onClick={() => setIsComment(!isComment)}><img src={isComment ? resource('./img/已评论.png') : resource('./img/未评论.png')} alt="" /></li>
-        <li onClick={() => setIsCollect(!isCollect)}><img src={isCollect ? resource('./svg/已收藏.svg') : resource('./svg/未收藏.svg')} alt="" /></li>
-        <li style={{display: isShow ? 'block' : 'none'}}><img src={resource('./svg/编辑.svg' )}alt="" /></li>
-        <li style={{display: isShow ? 'block' : 'none'}}><img src={resource('./svg/删除.svg')} alt="" /></li>
+        <li onClick={() => setIsLike(!isLike)}><img src={isLike ? resource('/img/已点赞.png') : resource('/img/未点赞.png')} alt="" /></li>
+        <li onClick={() => setIsComment(!isComment)}><img src={isComment ? resource('/img/已评论.png') : resource('/img/未评论.png')} alt="" /></li>
+        <li onClick={() => setIsCollect(!isCollect)}><img src={isCollect ? resource('/svg/已收藏.svg') : resource('/svg/未收藏.svg')} alt="" /></li>
+        <li style={{display: isShow ? 'block' : 'none'}}><img src={resource('/svg/编辑.svg' )}alt="" /></li>
+        <li style={{display: isShow ? 'block' : 'none'}}><img src={resource('/svg/删除.svg')} alt="" /></li>
       </ul>
       <Information width={'25%'} />
     </div>

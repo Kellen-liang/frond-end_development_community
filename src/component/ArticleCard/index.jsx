@@ -118,7 +118,7 @@ function ArticleCard(props) {
           className={styles.userOperate}
           onClick={(e) => _onOperateClick(e)}
         >
-          <li><img src={resource('/img/未查看.png')} alt="" /><span>{operate.count}</span></li>
+          <li><img src={('/img/未查看.png')} alt="" /><span>{operate.count}</span></li>
           <li data-type='likes' ><img src={resource(`/img/${operate.isLike ? '已点赞' : '未点赞'}.png`)} alt="" /><span>{operate.likes}</span></li>
           <li data-type='comments' ><img src={resource(`/img/${operate.isComment ? '已评论' : '未评论'}.png`)} alt="" /><span>{operate.comments}</span></li>
         </ul>

@@ -1,7 +1,6 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Popover } from "antd"
-// import resource from "@/assets/resource";
 import styles from "./index.module.scss"
 import { resource } from "@/utils/common";
 
@@ -67,7 +66,6 @@ function HeaderNav(props) {
               content={content} 
               arrow={false}
             >
-              {/* <img src={resource('./img/Icon.png')} alt=""></img> */}
               <img src={resource('/img/Icon.png')} alt=""></img>
             </Popover>
           </li>

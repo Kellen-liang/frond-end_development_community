@@ -7,7 +7,7 @@
     align-items: center;
     width: 100%;
     height: 150px;
-    background-image: url('/src/assets/img/kv-pc-220122.jpg');
+    background-image: url('/public/img/kv-pc-220122.jpg');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
@@ -21,7 +21,7 @@
         left: 100px;
         width: 39px;
         height: 28px;
-        background: url('/src/assets/img/草.png');
+        background: url('/public/img/草.png');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: bottom;
@@ -31,7 +31,7 @@
         left: 233px;
         width: 50px;
         height: 50px;
-        background: url('/src/assets/img/松.png');
+        background: url('/public/img/松.png');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: bottom;
@@ -41,7 +41,7 @@
         left: 387px;
         width: 50px;
         height: 50px;
-        background: url('/src/assets/img/樱.png');
+        background: url('/public/img/樱.png');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: bottom;
@@ -51,7 +51,7 @@
         left: 307px;
         width: 50px;
         height: 50px;
-        background: url('/src/assets/img/房子.png');
+        background: url('/public/img/房子.png');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: bottom;
@@ -61,7 +61,7 @@
         right: 229px;
         width: 37px;
         height: 107px;
-        background: url('/src/assets/img/高楼.png');
+        background: url('/public/img/高楼.png');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: bottom;
@@ -71,7 +71,7 @@
         right: 130px;
         width: 70px;
         height: 78px;
-        background: url('/src/assets/img/楼层.png');
+        background: url('/public/img/楼层.png');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: bottom;
@@ -81,7 +81,7 @@
         right: 55px;
         width: 50px;
         height: 105px;
-        background: url('/src/assets/img/塔.png');
+        background: url('/public/img/塔.png');
         background-repeat: no-repeat;
         background-size: cover;
         background-position: bottom;
@@ -92,7 +92,7 @@
         width: 56px;
         height: 39px;
         transform: rotateY(180deg);
-        background: url('/src/assets/img/牛.png');
+        background: url('/public/img/牛.png');
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-position: bottom;
@@ -102,7 +102,7 @@
         right: 304px;
         width: 56px;
         height: 39px;
-        background: url('/src/assets/img/车.png');
+        background: url('/public/img/车.png');
         background-repeat: no-repeat;
         background-size: 100% 100%;
         background-position: bottom;
@@ -111,7 +111,7 @@
 
     .search {
       position: relative;
-      background: url('/src/assets/img/frame-new.png');
+      background: url('/public/img/frame-new.png');
       background-size: 100% 100%;
       background-repeat: no-repeat;
       width: 500px;
@@ -120,7 +120,7 @@
       align-items: center;
       &::after {
         position: absolute;
-        content: url('/src/assets/svg/kv-text.svg');
+        content: url('/public/svg/kv-text.svg');
         width: 500px;
         top: -80%;
       }
@@ -136,7 +136,7 @@
         display: block;
         width: 15%;
         height: 70%;
-        background-image: url('/src/assets/img/search-icon.png');
+        background-image: url('/public/img/search-icon.png');
         background-size: 30%;
         background-repeat: no-repeat;
         background-position: center;

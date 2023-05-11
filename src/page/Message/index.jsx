@@ -12,7 +12,7 @@ import {
   MessageOutlined,
 } from '@ant-design/icons'
 import { cloneDeep } from "lodash";
-import resource from "@/assets/resource";
+import { resource } from "@/utils/common";
 
 function Message(props) {
   const navigate = useNavigate()
@@ -34,7 +34,7 @@ function Message(props) {
   const commentList = [
       { 
         comment_id: '001', //评论（回复）唯一id
-        user_icon: resource('./svg/带刀剑士.svg'),
+        user_icon: resource('.svg/带刀剑士.svg'),
         username: 'kellen',
         content: '这是一段回复',
         add_time: '2023-03-26',
@@ -44,7 +44,7 @@ function Message(props) {
       },
       { 
         comment_id: '002', //评论（回复）唯一id
-        user_icon: resource('./svg/带刀剑士.svg'),
+        user_icon: resource('/svg/带刀剑士.svg'),
         username: 'kellen',
         content: '这是一段回复',
         add_time: '2023-03-26',
@@ -63,7 +63,7 @@ function Message(props) {
       add_time: '2023-03-26',
       user_id: '007',
       username: 'kellen',
-      user_icon: resource('./svg/带刀剑士.svg'),
+      user_icon: resource('/svg/带刀剑士.svg'),
     },
     { 
       article_id: '002', 
@@ -71,7 +71,7 @@ function Message(props) {
       add_time: '2023-03-26',
       user_id: '006',
       username: 'Coco',
-      user_icon: resource('./svg/带刀剑士.svg'),
+      user_icon: resource('/svg/带刀剑士.svg'),
     },
     { 
       article_id: '003', 
@@ -79,7 +79,7 @@ function Message(props) {
       add_time: '2023-03-26',
       user_id: '008',
       username: 'Mike',
-      user_icon: resource('./svg/带刀剑士.svg'),
+      user_icon: resource('/svg/带刀剑士.svg'),
     },
   ]
   const [likes, setLike] = useState(likeList)

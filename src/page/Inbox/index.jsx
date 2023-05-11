@@ -5,7 +5,7 @@ import { cloneDeep } from "lodash";
 import styles from "./index.module.scss"
 import UserCardList from "./UserCardList";
 import ChatPopover from "./ChatPopover";
-import resource from "@/assets/resource";
+import { resource } from "@/utils/common";
 
 function Inbox(props) {
 
@@ -13,39 +13,39 @@ function Inbox(props) {
   const [userList, setUserList] = useState([
     {
       userId:'001',
-      userIcon: resource('./svg/带刀剑士.svg'),
+      userIcon: resource('/svg/带刀剑士.svg'),
       userName: 'Kellen',
-      userMessage: '啊看世界杯的asdasd按asf属地卡'
+      userMessage: '一个用户的一条普通信息'
     },
     {
       userId:'002',
-      userIcon: resource('./svg/带刀剑士.svg'),
+      userIcon: resource('/svg/带刀剑士.svg'),
       userName: 'Kellen',
-      userMessage: '啊看世界杯的asdasd按asf属地卡'
+      userMessage: '一个用户的一条普通信息'
     },
     {
       userId:'003',
-      userIcon: resource('./svg/带刀剑士.svg'),
+      userIcon: resource('/svg/带刀剑士.svg'),
       userName: 'Kellen',
-      userMessage: '啊看世界杯的asdasd按asf属地卡'
+      userMessage: '一个用户的一条普通信息'
     },
     {
       userId:'004',
-      userIcon: resource('./svg/带刀剑士.svg'),
+      userIcon: resource('/svg/带刀剑士.svg'),
       userName: 'Kellen',
-      userMessage: '啊看世界杯的asdasd按asf属地卡'
+      userMessage: '一个用户的一条普通信息'
     },
     {
       userId:'005',
-      userIcon: resource('./svg/带刀剑士.svg'),
+      userIcon: resource('/svg/带刀剑士.svg'),
       userName: 'Kellen',
-      userMessage: '啊看世界杯的asdasd按asf属地卡'
+      userMessage: '一个用户的一条普通信息'
     },
   ])
 
   const [chatInfoLIst, setchatInfoLIst] = useState([
-    {username: 'Kellen', userIcon: resource('./svg/带刀剑士.svg'), chatCentent: '你好呀', addtime: '2023-3-25', isMine: true},
-    {username: 'CoCo', userIcon: resource('./svg/带刀剑士.svg'), chatCentent: '你好呀', addtime: '2023-3-25', isMine: false}
+    {username: 'Kellen', userIcon: resource('/svg/带刀剑士.svg'), chatCentent: '你好呀', addtime: '2023-3-25', isMine: true},
+    {username: 'CoCo', userIcon: resource('/svg/带刀剑士.svg'), chatCentent: '你好呀', addtime: '2023-3-25', isMine: false}
   ])
   
   const onClick = (index, record) =>{
