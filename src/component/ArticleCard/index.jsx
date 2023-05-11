@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./index.module.scss";
-import resource from "@/assets/resource";
+import resource from "/public/resource";
 /**
  * 
  * @param {object} props

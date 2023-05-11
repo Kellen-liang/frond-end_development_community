@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Popover } from "antd"
 import resource from "@/assets/resource";
 import styles from "./index.module.scss"
+import { resource2 } from "@/utils/common";
 
 function HeaderNav(props) {
   const navigate = useNavigate()
@@ -32,7 +33,8 @@ function HeaderNav(props) {
   const content = () => (
     <div className={styles.userInfoPopover} onClick={onPushUserCenter}>
       <section className={styles.userInfoPopoverHeader}>
-        <img src={resource('./img/Icon.png')} alt="" />
+        {/* <img src={resource('./img/Icon.png')} alt="" /> */}
+        <img src={resource2('/img/Icon.png')} alt="" />
         <span>Kellen</span>
       </section>
       <section className={styles.userInfoPopoverNav}>
@@ -65,7 +67,8 @@ function HeaderNav(props) {
               content={content} 
               arrow={false}
             >
-              <img src={resource('./img/Icon.png')} alt=""></img>
+              {/* <img src={resource('./img/Icon.png')} alt=""></img> */}
+              <img src={resource('/public/img/Icon.png')} alt=""></img>
             </Popover>
           </li>
         </ul>
